@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>poster-model-select</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <%- include("header"); %>
+    <div class="action-wrapper">
+      <div class="container" id="board">
+        <div>
+          <form class="" action="poster-input-image" method="get">
+            <div class="head-caption">
+              <h2 id="theme">人間</h2>
+            </div>
+            <div class="know-contents">
+              <div class="see-action btn">
+                <a href="/seikatsu-know" class="see-action-icon">
+                  <img class="see-contents" src="https://img.icons8.com/bubbles/500/000000/friends--v4.png"/>
+                  <p>生活</p>
+                </a>
+              </div>
+              <div class="see-action btn">
+                <a href="/relation-know" class="see-action-icon">
+                  <img class="see-contents" src="https://img.icons8.com/bubbles/500/000000/friends--v4.png"/>
+                  <p>人間関係</p>
+                </a>
+              </div>
+            </div>
+            <div class="heads-caption">
+              <h2 id = "message3">たくさんの視点が欲しい。</h2>
+            </div>
+          </form>
+
+        </div>
+        <a href = "/painting-know" class="back">戻る</a>
+      </div>
+    </div>
+    <%- include("modaldal"); %>
+  </body>
+</html>

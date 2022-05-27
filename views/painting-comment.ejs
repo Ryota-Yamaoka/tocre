@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>poster-model-select</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script type="text/javascript" src="simplest_example.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+  </head>
+  <body onload="draw()">
+    <%- include("header"); %>
+    <div class="action-wrapper">
+      <div class="model-select">
+        <form class="" action="poster-input-image" method="get">
+          <div class="head-caption">
+            <h2 id="theme1">視点を共有する</h2>
+          </div>
+          <div>
+            <div class="know-contents">
+              <br>
+              <div class="box17" id="your_container">
+                <div id="mynetwork"></div>
+              </div>
+            </div>
+            <canvas id="myDoughnutChart" width="40" height="10">
+            </canvas>
+            <h3>この作品に対する解釈・イメージを共有してみよう</h3>
+            <form id="models" action="poster-input-image" method="get">
+              <label><input type="radio" name="model" value="1"><p>幸福</p></label>
+              <label><input type="radio" name="model" value="2"><p>苦しみ</p></label>
+              <label><input type="radio" name="model" value="3"><p>悲しみ</p></label>
+              <label><input type="radio" name="model" value="4"><p>希望</p></label>
+              <label><input type="radio" name="model" value="5"><p>論理</p></label>
+              <label><input type="radio" name="model" value="6"><p>怒り</p></label>
+              <label><input type="radio" name="model" value="7"><p>愛</p></label>
+              <label><input type="radio" name="model" value="8"><p>感動</p></label>
+              <label><input type="radio" name="model" value="9"><p>疑い</p></label>
+              <label><input type="radio" name="model" value="10"><p>熱中</p></label>
+            </form>
+            <!-- テキストボックス、送信ボタン④ -->
+            <div id="bms_send">
+              <textarea id="bms_send_message"></textarea>
+              <div id="bms_send_btn">送信</div>
+            </div>
+          </div>
+        </form>
+      </div>
+        <a href = "/painting-know" class="back">戻る</a>
+    </div>
+    <script>
+      var ctx = document.getElementById("myDoughnutChart");
+      var myDoughnutChart= new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ["ほっこりする", "優しい感じがする", "思いやりに溢れている", "感動的な表現が得意そうだ", "家族を持つということの大変さを感じた"], //データ項目のラベル
+          datasets: [{
+              backgroundColor: [
+                  "#c97586",
+                  "#bbbcde",
+                  "#93b881",
+                  "#e6b422", 
+                  "#a4a267"
+              ],
+              data: [45, 25, 13, 12, 5] //グラフのデータ
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            //グラフタイトル
+            text: '感性傾向分析'
+          }
+        }
+      });
+    </script>
+    <script type="text/javascript">
+    function draw() {
+
+    var nodes = new vis.DataSet([
+        { id: 1, label: "優しい感じがする", title: "yamada01", size: 35, color: {
+            border: "rgba(255, 0, 0, 0.8)",
+            background: "white"
+          }
+        },
+        { id: 2, label: "思いやりに溢れている", title: "katooooo", size: 25},
+        { id: 3, label: "ほっこりする", title: "imim", size: 40, color: {
+            border: "rgba(0, 255, 255, 0.8)",
+            background: "rgba(150, 150, 0, 0.8)"
+          }
+        },
+        { id: 4, label: "家族を持つということの大変さを感じた", title: "takeshi", size: 10, color: {
+            border: "rgba(200, 255, 0, 0.8)",
+            background: "rgba(10, 15, 200, 0.8)"
+          }
+        },
+        { id: 5, label: "感動的な表現が得意そうだ", title: "yahho-", size: 20, color: {
+            border: "rgba(150, 150, 200, 0.8)",
+            background: "rgba(50, 10, 200, 0.8)"
+          }
+        },
+        // { id: 5, label: msg.a}
+    ]);
+
+    // function buttonClick(){
+    //   msg.a = bms_send_message.value;
+    // }
+    //
+    // let bms_send_message = document.getElementById('bms_send_message');
+    // bms_send_message.value = 'コメントをお願いします';
+    // let msg = document.getElementById('mynetwork');
+    //
+    // let bms_send_btn = document.getElementById('bms_send_btn');
+    // bms_send_btn.addEventListener('click', buttonClick);
+
+    var edges = new vis.DataSet([
+        { from: 1, to: 3 },
+        { from: 1, to: 2 },
+        { from: 4, to: 3 },
+        { from: 5, to: 1 }
+    ]);
+
+    var data = {
+        nodes: nodes,
+        edges: edges
+    }
+
+    var options = {
+        autoResize: true,   // ウィンドウサイズをレスポンシブにする
+        width: "100%",      // ウィンドウ横幅
+        height: "580",     // ウィンドウ縦幅
+        nodes: {
+            shape: "dot",
+            borderWidth: 4,
+            size: 30,
+            color: {
+                border: "#165e83",
+                background: "rgba(174, 56, 70, 0.9)"
+            },
+            font: { color: "black" }
+        },
+        edges: {
+            color: "lightgreen",
+        }
+    }
+
+    var container = document.getElementById("mynetwork");
+    var network = new vis.Network(container, data, options);
+  }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>tocre.creative tool</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src = "/send_url.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .wrap {
+            padding: 32px 0 64px;
+        }
+
+        .content {
+            margin: 150px 0 0 0;
+            color: black;
+        }
+
+        #prof-name{
+          color: black;
+        }
+
+        .heading-lv1 {
+            font-size: 32px;
+            font-style: italic;
+        }
+
+        .heading-lv2 {
+            font-size: 24px;
+        }
+
+        .heading-lv3 {
+            font-size: 20px;
+        }
+
+        .heading-margin {
+            margin-top: 32px;
+        }
+
+        .text {
+            margin: 16px 0 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .profile-image {
+            margin: 16px 0 0;
+            text-align: center;
+        }
+
+        .profile-image img {
+            width: 150px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .square_contents {
+          display: flex;
+          flex-wrap: wrap;
+          max-width: 1500px;
+          margin: 0 auto;
+        }
+
+        .square_contents a {
+          display: block;
+          position: relative;
+          width: 31%;
+          margin: 1%;
+        }
+
+        .square_contents a::before {
+          content: "";
+          display: block;
+          padding-top: 100%;
+        }
+
+        .square_contents img {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          object-fit: cover;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+  </head>
+  <body class="wrap">
+    <%- include("header"); %>
+    <div class="action-wrapper">
+      <div class="container" id="board">
+        <div class="model-select">
+          <div class="content">
+              <h1 class="heading-lv1 text-center">Profile</h1>
+              <div class="image_border">
+                <div class="image_circle"></div>
+              </div>
+              <div class="profile-image">
+                  <img src="../images/profile.png" width="300" height="300">
+              </div>
+
+              <h2 class="heading-lv2 heading-margin text-center" id="prof-name">RYOTA YAMAOKA</h2>
+              <p class="text text-center">高校1年生です。</p>
+
+              <h3 class="heading-lv3 heading-margin text-center">自己紹介</h3>
+              <p class="text text-center">好きなアーティストは女王蜂です。<br>ヒトに寄り添える曲、その他作品を作りたいです。<br>ぜひ鑑賞してください！</p>
+              <p>利用可能ポイント：500p <a href="#" class="js-modal-open" data-target="modal00">ポイントを貯めるには</a></p>
+
+              <div id="modal00" class="modal js-modal">
+                <div class="modal-bg js-modal-close">
+                </div>
+                <div class="modal-contents">
+                  <div class="modal-header">
+                  　　<h1>ポイントを貯める方法</h1>
+                　　　<span class="js-modal-close cross">×</span>
+                  　</div>
+                    <div class="modal-body">
+                      <div class="lisence">
+                        <h1>①作品をコレクションしてもらう</h1>
+                        <h3>STEP1：作品をつくる</h3>
+                        <p>大切なのは美しさだけではありません。独自の視点を魅力的に表現しましょう。</p>
+                        <img src="https://as2.ftcdn.net/v2/jpg/02/92/58/97/1000_F_292589728_Qsgu1Y26kIKiQLNVmuDnO0p6pDjf0UBH.jpg" height="200">
+                        <h3>STEP2：アップロードする</h3>
+                        <p>完成したら皆に見てもらいましょう。</p>
+                        <img src="../images/upload.png" height="200">
+                        <h3>STEP3：待つ</h3>
+                        <p>作品は全て100pで出されます。視点に興味を持ってくれる人を待ちましょう。</p>
+                        <img src="https://as1.ftcdn.net/v2/jpg/01/24/01/74/1000_F_124017483_IWwnv1mA4L87U3AesWYR8x3jDAqvf9No.jpg" height="200">
+                        <h3>STEP4：ポイントGET</h3>
+                        <p>コレクションされると100pもらえます。</p>
+                        <img src="https://as1.ftcdn.net/v2/jpg/02/56/44/90/1000_F_256449077_0fEFJcg2Pr5PN6eU4UF5gHoqtISN26zs.jpg" height="200">
+                        <h1>②他作品に対する解釈を共有する</h1>
+                        <h3>STEP1：他の人の作品を見てみましょう。</h3>
+                        <p>まずは他の人の作品を見て視野を広げましょう。</p>
+                        <img src="../images/see-many.png" height="200">
+                        <h3>STEP2：「他の人の解釈を見る」のページで、自分の解釈を知らせましょう。</h3>
+                        <p>表現方法には、選択式とコメント式があります。</p>
+                        <p>選択式では、作品を見て感じたことに最も近い選択肢を選んで送信しましょう(5p)。</p>
+                        <p>コメント式では、作品を見て感じたことを自分の言葉で表現して送信しましょう(20p)。</p>
+                        <img src="../images/comment-idea.png" height="200">
+                        <h3>STEP3：ポイントGET</h3>
+                        <p>完了すると表現方法に応じてポイントが貯まります。</p>
+                        <img src="https://as1.ftcdn.net/v2/jpg/02/56/44/90/1000_F_256449077_0fEFJcg2Pr5PN6eU4UF5gHoqtISN26zs.jpg" height="200">
+                      </div>
+                  　</div>
+                </div>
+              </div>
+
+              <canvas id="myDoughnutChart" width="40" height="10">
+              </canvas>
+          </div>
+          <div class="area">
+            <input type="radio" name="tab_name" id="tab1" checked>
+            <label class="tab_class" for="tab1">つくったもの</label>
+            <div class="content_class">
+              <form class="" action="poster-input-image" method="get">
+                <div class="square_contents">
+                  <a href="#" class="js-modal-open" data-target="modal01"><img src="../images/green-man.png"></a>
+                  <a href="#" class="js-modal-open" data-target="modal02"><img src="../images/smart.png"></a>
+                  <a href="#" class="js-modal-open" data-target="modal03"><img src="../images/narrow.png"></a>
+                  <a href="#" class="js-modal-open" data-target="modal04"><img src="../images/real-music.png"></a>
+                  <a href="#" class="js-modal-open" data-target="modal05"><img src="../images/clearial.png"></a>
+                  <a href="#" class="js-modal-open" data-target="modal06"><img src="../images/sense.png"></a>
+                  <a href="#" class="js-modal-open" data-target="modal07"><img src="../images/relation.png"></a>
+                  <a href="#" class="js-modal-open" data-target="modal08"><img src="../images/ikiisogi.png"></a>
+                  <a href="#" class="js-modal-open" data-target="modal09"><img src="../images/color.png"></a>
+                </div>
+              </form>
+            </div>
+            <input type="radio" name="tab_name" id="tab2" >
+            <label class="tab_class" for="tab2">マイコレクション</label>
+            <div class="content_class">
+              <form class="" action="poster-input-image" method="get">
+                <div class="square_contents">
+                  <a href="#" class="js-modal-open" data-target="modal01"><img src="../images/vaccine.png"></a>
+                  <a href="#" class="js-modal-open" data-target="modal02"><img src="../images/akuma.jpg"></a>
+                  <a href="#" class="js-modal-open" data-target="modal03"><img src="../images/aikidou.png"></a>
+                  <a href="#" class="js-modal-open" data-target="modal04"><img src="../images/sns children.jpg"></a>
+                  <a href="#" class="js-modal-open" data-target="modal05"><img src="../images/nail story.png"></a>
+                  <a href="#" class="js-modal-open" data-target="modal06"><img src="../images/kinmokusei.jpg"></a>
+                  <a href="#" class="js-modal-open" data-target="modal07"><img src="../images/buta.png"></a>
+                  <a href="#" class="js-modal-open" data-target="modal08"><img src="../images/breath.png"></a>
+                  <a href="#" class="js-modal-open" data-target="modal09"><img src="../images/mushi.png"></a>
+                </div>
+              </form>
+            </div>
+            <input type="radio" name="tab_name" id="tab3" >
+            <label class="tab_class" for="tab3">これまでの解釈</label>
+            <div class="content_class">
+              <p>4/8・迫力を表現するのがうまい [for <a href="#">takuma kotani</a>]</p>
+              <p>4/12・星野源の日常を想像していると感じた [for <a href="#">中村大樹</a>]</p>
+              <p>4/28・日常における影の部分を表している [for <a href="#">willian brighton</a>]</p>
+              <p>5/11・人間の心理を深く読んでいる [for <a href="#">yosshi</a>]</p>
+              <p>5/21・ワクチンに対する嫌悪感が読み取れる [for <a href="#">tanaka taro</a>]</p>
+              <p>5/22・迫力を表現するのがうまい [for <a href="#">takuma kotani</a>]</p>
+              <p>5/26・星野源の日常を想像していると感じた [for <a href="#">中村大樹</a>]</p>
+              <p>5/30・日常における影の部分を表している [for <a href="#">willian brighton</a>]</p>
+              <p>6/2・人間の心理を深く読んでいる [for <a href="#">yosshi</a>]</p>
+              <p>6/16・ワクチンに対する嫌悪感が読み取れる [for <a href="#">tanaka taro</a>]</p>
+              <p>6/28・迫力を表現するのがうまい [for <a href="#">takuma kotani</a>]</p>
+              <p>7/1・星野源の日常を想像していると感じた [for <a href="#">中村大樹</a>]</p>
+              <p>7/9・日常における影の部分を表している [for <a href="#">willian brighton</a>]</p>
+              <p>7/27・人間の心理を深く読んでいる [for <a href="#">yosshi</a>]</p>
+              <p>8/3・ワクチンに対する嫌悪感が読み取れる [for <a href="#">tanaka taro</a>]</p>
+              <p>8/14・迫力を表現するのがうまい [for <a href="#">takuma kotani</a>]</p>
+              <p>8/23・星野源の日常を想像していると感じた [for <a href="#">中村大樹</a>]</p>
+              <p>8/31・日常における影の部分を表している [for <a href="#">willian brighton</a>]</p>
+              <p>9/2・人間の心理を深く読んでいる [for <a href="#">yosshi</a>]</p>
+              <p>9/21・ワクチンに対する嫌悪感が読み取れる [for <a href="#">tanaka taro</a>]</p>
+            </div>
+          </div>
+
+          <div id="modal01" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h3>解説：森の中の木が都会の方を見て悲しんでいる。</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：もともと森があった場所にある住宅街</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                  </div>
+                  <div class="ooo">
+                    <img class="know-contents-modal" src="../images/green-man.png"></img>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+          <div id="modal02" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h3>解説：スマホに対するアンチテーゼ...</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：『AI vs. 教科書が読めない子どもたち』</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                  </div>
+                  <div class="ooo">
+                    <img class="know-contents-modal" src="../images/smart.png"></img>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+          <div id="modal03" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h3>解説：目の前のことしか見えていない...</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：金・学歴・酒・SNSしか見えていないような人</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                  </div>
+                  <div class="ooo">
+                    <img class="know-contents-modal" src="../images/narrow.png"></img>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+          <div id="modal04" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h3>解説：あえて書きません。</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：Spotifyにリリースされているポピュラー音楽。</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                  </div>
+                  <div class="ooo">
+                    <img class="know-contents-modal" src="../images/real-music.png"></img>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+          <div id="modal05" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h3>解説：今の学校教育では、社会は面白くならない。評価を求めて、違いを恐れて、お金だけに執着するつまらない人間養成システムを変えなければならない。君がその希望だ。というメッセージを込めている。スタイルは、女王蜂『BL』を模倣した。</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：今の学校教育</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                  </div>
+                  <div class="ooo">
+                    <audio class="know-contents-modal" src="../music/clearial.wav" controls></audio>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+          <div id="modal06" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h1>『センスって何だ？』</h1>
+                    <h3>解説：「ファッションのセンスいいね！」「聴いてる曲センスいいねぇ」...結局センスって何？</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：センスのいい友達</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                  </div>
+                  <div class="ooo">
+                    <video class="know-contents-modal" src="../videos/sense.mp4" controls></video>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+          <div id="modal07" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h3>解説：社会性について思うことを簡潔に。</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：『花束みたいな恋をした』のセリフ「社会性は才能の敵」</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                  </div>
+                  <div class="ooo">
+                    <video class="know-contents-modal" src="../videos/relation.mp4" controls></video>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+          <div id="modal08" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h1>『ColorsLookDifferent』</h1>
+                    <h3>解説：色彩検定協会の広告を作ってみるというイベントを見つけて作ってみた。30秒CM。</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：色彩検定協会の広告コンペ</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                  </div>
+                  <div class="ooo">
+                    <video class="know-contents-modal" src="../videos/color.mp4" controls></video>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+          <div id="modal09" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h3>解説：駅にはnoiseがある。そのnoiseの中には時として、自殺者の叫び、それを知った家族や友人の哀しみ、または赤の他人の人身事故による電車の遅延への苛立ちなど様々なものが入り混じっている。これらのnoiseは全て人間の弱く汚い部分である。駅構内で起こっていることを想像しながらnoiseを「見る」ことで、そういった部分に向き合うことができると考えた。</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：『ちょっと今から仕事やめてくる』・駅での皆さんの顔</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                  </div>
+                  <div class="ooo">
+                    <video class="know-contents-modal" src="../videos/ikiisogi.mp4" controls></video>
+                  </div>
+              　</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var ctx = document.getElementById("myDoughnutChart");
+      var myDoughnutChart= new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ["繊細", "感情的", "独創的", "些細な発見", "本質的"], //データ項目のラベル
+          datasets: [{
+              backgroundColor: [
+                  "#c97586",
+                  "#bbbcde",
+                  "#93b881",
+                  "#e6b422", 
+                  "#a4a267"
+              ],
+              data: [45, 25, 13, 12, 5] //グラフのデータ
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            //グラフタイトル
+            text: '感性傾向分析'
+          }
+        }
+      });
+    </script>
+    <script>
+    // モーダルウィンドウを開く
+    $('.js-modal-open').on('click', function(){
+      var target = $(this).data('target');
+      var modal = document.getElementById(target);
+      scrollPosition = $(window).scrollTop();
+      $('body').addClass('fixed').css({'top': -scrollPosition});
+      $(modal).fadeIn();
+      return false;
+    });
+
+    // モーダルウィンドウを閉じる
+    $('.js-modal-close').on('click', function(){
+      $('body').removeClass('fixed');
+      window.scrollTo( 0 , scrollPosition );
+      $('.js-modal').fadeOut();
+      return false;
+    });
+  </script>
+  </body>
+</html>

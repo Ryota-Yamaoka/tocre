@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>poster-model-select</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <%- include("header"); %>
+    <div class="action-wrapper">
+      <div class="container" id="board">
+        <div>
+          <form class="" action="poster-input-image" method="get">
+            <div class="head-caption">
+              <h2 id="theme">散歩</h2>
+            </div>
+            <div>
+              <a href="#" class="js-modal-open" data-target="modal01"><video class="see-contents" src="../videos/scenary.mp4"></video></a>
+              <a href="#" class="js-modal-open" data-target="modal02"><img class="see-contents" src="../images/mushi.png"></img></a>
+              <a href="#" class="js-modal-open" data-target="modal03"><img class="see-contents" src="../images/kinmokusei.jpg"></img></a>
+              <a href="#" class="js-modal-open" data-target="modal04"><video class="see-contents" src="../videos/shingou.mp4"></video></a>
+            </div>
+            <div class="heads-caption">
+              <h2 id = "message3">たくさんの視点が欲しい。</h2>
+            </div>
+          </form>
+
+          <div id="modal01" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h3>解説：人は同じものを見ているようで、実は自分のフィルターをかけて、独自の視点から物事を見ている。</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：道端の花を見つけた時、たまたま眼鏡を外して見ると、すごく綺麗で色鮮やかだった。</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                    <p><a href="/purchase">購入する</a>：100p</p>
+                  </div>
+                  <div class="ooo">
+                    <video class="know-contents-modal" src="../videos/scenary.mp4" controls></video>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+          <div id="modal02" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h3>解説：この社会も横断歩道もズルした方が有利になる。</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：赤信号を渡ってどんどん先に進む人</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                    <p><a href="/purchase">購入する</a>：100p</p>
+                  </div>
+                  <div class="ooo">
+                    <img class="know-contents-modal" src="../images/mushi.png"></img>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+          <div id="modal03" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h1>『humility』</h1>
+                    <h3>解説：こんなにいい香りで綺麗な金木犀が咲いていた。俗に言う社会人は忙しくて、きっとこの幸せには気づかないのだろう。ちなみに金木犀の花言葉は「謙虚」「気高い人」「真実」「陶酔」「誘惑」。</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：歩いていてたまたま見つけたいい香りのする金木犀</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                    <p><a href="/purchase">購入する</a>：100p</p>
+                  </div>
+                  <div class="ooo">
+                    <img class="know-contents-modal" src="../images/kinmokusei.jpg"></img>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+          <div id="modal04" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h1>『行き詰まり』</h1>
+                    <h3>解説：青信号は自分が渡ろうとすると絶対に点滅し始める。先に見えている青信号が渡る時も青であるなんて、そんなこと往々にしてない。</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：自分が横断歩道を渡ろうとすると信号が絶対に赤になるという謎現象</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                    <p><a href="/purchase">購入する</a>：100p</p>
+                  </div>
+                  <div class="ooo">
+                    <video class="know-contents-modal" src="../videos/shingou.mp4" controls></video>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+        </div>
+        <a href = "/painting-know" class="back">戻る</a>
+      </div>
+    </div>
+    <%- include("modaldal"); %>
+  </body>
+</html>

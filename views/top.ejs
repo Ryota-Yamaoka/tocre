@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>tocre.creative tool</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src = "/send_url.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+      #humMenu{
+        padding: 0 15px 20px 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-logo">
+          tocre
+          <img src="">
+        </div>
+        <div class="header-left">
+          <ul>
+            <li><a href="/school-know" class = "btn music">学校</a></li>
+            <li><a href="/book-know" class = "btn music">本</a></li>
+            <li><a href="/movie-know" class = "btn music">映画</a></li>
+            <li><a href="/music-know" class = "btn music">音楽</a></li>
+            <!-- <li><a href="#" class = "btn novel">real-product</a></li> -->
+            <!-- <li><a href="#" class = "btn poem">poem</a></li> -->
+          </ul>
+        </div>
+        <div class="header-right">
+          <div id="humMenu">
+            <input id="humCheck" type="checkbox">
+            <label id="humOpen" for="humCheck"><span class = "fa fa-bars fa-2x"></span></label>
+            <label id="humClose" for="humCheck"></label>
+            <nav>
+              <ul class="inner">
+        <%  if(locals.isLoggedIn){ %>
+                <li><p>ようこそ、<%= locals.displayName %>さん</p></li>
+                <!-- ログインしたユーザーごとにアカウントを分ける -->
+                <li><a href="#">プロフィール</a></li>
+                <li><a href="#">アカウント設定</a></li>
+                <!-- <li><a href="/logout" class = "btn login">ログアウト</a></li> -->
+                <li><a href="/logout">ログアウト</a></li>
+              </ul>
+            </nav>
+          </div>
+        <%  }else{ %>
+                <li><p>ようこそ、<%= locals.username %>さん</p></li>
+                <li><a href="/prof">プロフィール</a></li>
+                <li><a href="#">アカウント設定</a></li>
+                <!-- <li><a href="/login" class = "btn login">ログイン</a></li> -->
+                <li><a href="/login">ログイン</a></li>
+            </nav>
+          </div>
+        <%  } %>
+        </div>
+        <div class="greeting">
+          <p>ようこそ、<%= locals.username %>さん</p>
+        </div>
+      </div>
+    </header>
+    <div class="top-wrapper">
+      <div class="background-wrap">
+        <video id = "video1" src="../videos/reading.mov" autoplay loop muted playsinline></video>
+        <video id = "video2" src="../videos/art.mov" autoplay loop muted playsinline></video>
+      </div>
+      <div class="image-wrap">
+        <img src="images/">
+      </div>
+      <div class="container">
+        <h1>ちょっとした体験に「感創」を。</h1>
+        <h2>A little bit of experience, a little bit of art.</h2>
+        <p>読む。聴く。会う。学ぶ。思う。</p>
+        <p>そんな何気ない体験の感想を綴るように、作品をつくる。</p>
+        <p>いわば「感創」</p>
+        <p>そうして出来上がった作品を、他の体験者と共有してみる。</p>
+        <p>そういうの、よくない？</p>
+        <div class="btn-wrapper">
+          <a href="/login" class = "btn signup">新規登録・ログインはこちら</a>
+        </div>
+      </div>
+    </div>
+    <div class="action-wrapper">
+      <div class="heading">
+        <h2>「感創」を共有してみよう。</h2>
+      </div>
+      <div class="container">
+        <div class="actions">
+          <div class="action btn">
+            <a href="/painting-know" class="action-icon">
+              <img src="https://img.icons8.com/bubbles/500/000000/picture.png"/>
+              <p>みる</p>
+            </a>
+            <p class = "txt-contents">テーマ別に他の生徒の作品を見たり、自分の作品を共有してみよう。</p>
+          </div>
+          <div class="action btn">
+            <a href="/now-know" class="action-icon">
+              <img src="https://img.icons8.com/bubbles/500/000000/share.png"/>
+              <p>つくる</p>
+            </a>
+            <p class = "txt-contents">今、リアルタイムで行われているテーマ別創作イベントに参加してみよう。</p>
+            <p class="txt-contents1 js-modal-open" data-target="modal01">※テーマ別創作イベントとは</p>
+          </div>
+        </div>
+
+        <div id="modal01" class="modal js-modal">
+          <div class="modal-bg js-modal-close">
+          </div>
+          <div class="modal-contents">
+            <div class="modal-header">
+            　　<h1>テーマ別創作イベント</h1>
+          　　　<span class="js-modal-close cross">×</span>
+            　</div>
+              <div class="modal-body">
+                <div class="lisence">
+                  <h3>これは、同じ体験に対する個々の考え方の違いをリアルタイムで実感できるイベントです。</h3>
+                  <p>・作品を創作する際に、どのテーマでつくればいいかわからない。</p>
+                  <p>・前の人が作品をつくってから時間が経ったテーマでは議論が生まれにくい。</p>
+                  <p>・たくさんの人に注目されるテーマで創作したい。</p>
+                  <p>などなど、共有に積極的な方におすすめです。</p>
+                  <p>※テーマは一週間ごとに変化します。</p>
+                </div>
+            　</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="message-wrapper">
+      <div class="container">
+          <h2>芸術は、考えを表現するための手段、になりうる。</h2>
+          <h3>Art can be a means.</h3>
+        <a href = "/painting-know" class = "btn message">みる</a>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="header-logo">
+          tocre
+        </div>
+        <img src="">
+        <p>Art can be a means.</p>
+      </div>
+    </footer>
+    <%- include("modaldal"); %>
+  </body>
+</html>

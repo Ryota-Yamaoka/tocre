@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>poster-model-select</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <%- include("header"); %>
+    <div class="action-wrapper">
+      <div>
+        <div class="head-caption">
+          <h1 id="theme1">感じたことを、リアルタイムで。</h1>
+          <div class="heading">
+            <h2 id="theme2">今週のテーマは、「星野源/喜劇」です。</h2>
+          </div>
+          <div class="see-memo">
+            <div class="">
+              <a href="#" class="js-modal-open" data-target="modal01"><p>作品をアップロード</p></a>
+            </div>
+            <div id="modal01" class="modal js-modal">
+              <div class="modal-bg js-modal-close">
+              </div>
+              <div class="modal-contents">
+                <div class="modal-header">
+                　　<h1>作品をアップロードする</h1>
+              　　　<span class="js-modal-close cross">×</span>
+                　</div>
+                  <div class="modal-body">
+                    <div class="lisence">
+                      <h3>アップロードして、君の作品を見てもらおう。</h3>
+                      <div class="FileBtn">
+                        <p class="btn">ファイルを選択</p>
+                        <input type="file" id = "input">
+                      </div>
+                      <p>作品タイトル（任意）</p>
+                      <div>
+                        <p>『<input type="text" id="bms_send_message" placeholder="例 『What is believing』">』</p>
+                      </div>
+                      <p>解説</p>
+                      <div>
+                        <textarea name="name" class="m-form-textarea" placeholder="例 『走れメロス』を読んだ時に、自分の中で「信じるということ」は、考えの中に自分を1mmも取り込まないということだと考えた。利己的にならなかった時に、真の信実が実現するのだ。それをものさしを使って表現した。"></textarea>
+                      </div>
+                      <p>何ポイントで他の人にこの作品をコレクションしてもらいますか？</p>
+                      <div>
+                        <input type="number" id="bms_send_message" placeholder="例 150p">
+                      </div>
+                      <div id="bms_send_btn">決定</div>
+                    </div>
+                　</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container" id="board">
+          <form class="" action="poster-input-image" method="get">
+            <div>
+              <a href="#" class="js-modal-open" data-target="modal02"><img class="see-contents" src="../images/narrow.png"></img></a>
+              <a href="#" class="js-modal-open" data-target="modal03"><img class="see-contents" src="../images/nail story.png"></img></a>
+              <a href="#" class="js-modal-open" data-target="modal04"><img class="see-contents" src="../images/mushi.png"></img></a>
+            </div>
+            <div class="heads-caption">
+              <h2 id = "message3">色んな視点から見てみよう。</h2>
+            </div>
+          </form>
+
+          <div id="modal02" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h3>解説：目の前のことしか見えていない...</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：金・学歴・酒・SNSしか見えていないような人</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                    <p><a href="/purchase">購入する</a>：100p</p>
+                  </div>
+                  <div class="ooo">
+                    <img class="know-contents-modal" src="../images/narrow.png"></img>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+          <div id="modal03" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h3>解説：撫でている猫が可愛いと言って、自分のネイルを見せびらかしている。</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：Instagramのストーリー</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                    <p><a href="/purchase">購入する</a>：100p</p>
+                  </div>
+                  <div class="ooo">
+                    <img class="know-contents-modal" src="../images/nail story.png"></img>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+          <div id="modal04" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h3>解説：この社会も横断歩道もズルした方が有利になる。</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：赤信号を渡ってどんどん先に進む人</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                    <p><a href="/purchase">購入する</a>：100p</p>
+                  </div>
+                  <div class="ooo">
+                    <img class="know-contents-modal" src="../images/mushi.png"></img>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+        </div>
+        <a href = "/" class="back">戻る</a>
+      </div>
+    </div>
+    <%- include("modaldal"); %>
+  </body>
+</html>

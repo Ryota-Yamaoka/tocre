@@ -1,0 +1,1228 @@
+* {
+  box-sizing: border-box;
+}
+
+html{
+  font-size: 100%;
+  font-family: "Hiragino Kaku Gothic ProN";
+  line-height: 1.7;
+  letter-spacing: 1px;
+  height: 100%;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+header{
+  background-color: rgba(174, 56, 70, 0.9);
+  height: 65px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  float: left;
+}
+
+.header-logo{
+  float: left;
+  line-height: 27px;
+  margin-right: 20px;
+  font-family: "Comic Sans MS";
+  font-size: 30px;
+}
+
+.header-left li{
+  float: left;
+  list-style: none;
+  font-size: 20px;
+  transition: all 0.5s;
+  line-height: 15px;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.header-left li:hover{
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.greeting{
+  color: white;
+  float: right;
+  font-size: 20px;
+  line-height: 0;
+  display: inline-block;
+  padding: 0 25px;
+
+}
+
+.header-right{
+  float: right;
+  font-size: 15px;
+  line-height: 15px;
+  transition: all 0.5s;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.header-right:hover{
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+a{
+  text-decoration: none;
+}
+
+.container{
+  padding: 0 15px;
+  margin: 0 auto;
+  z-index: 1;
+  position: relative;
+}
+
+.top-wrapper{
+  padding: 180px 0 100px 0;
+  color: black;
+  text-align: center;
+  height: 1000px;
+  color: white;
+}
+
+.top-wrapper h1{
+  opacity: 0.7;
+  font-size: 91px;
+}
+
+.top-wrapper h2{
+  opacity: 0.7;
+  font-size: 40px;
+}
+
+.top-wrapper p{
+  opacity: 0.7;
+}
+
+.background-wrap{
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 0;
+}
+
+.background-wrap::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.background-wrap #video1{
+  padding-bottom: 100px;
+}
+
+.btn{
+  color: white;
+  display: inline-block;
+  opacity: 0.8;
+  border-radius: 4px;
+  transition: all 0.5s;
+}
+
+.btn:hover{
+  opacity: 1;
+}
+
+.signup{
+  padding: 8px 24px;
+  background-color: #165e83;
+}
+
+.facebook{
+  padding: 8px 24px;
+  background-color: #3b5998;
+  margin-right: 10px;
+}
+
+.twitter{
+  padding: 8px 24px;
+  background-color: #55acee;
+}
+
+.poster{
+  padding: 8px 24px;
+}
+
+.video{
+  padding: 8px 24px;
+}
+
+.auto{
+  padding: 8px 24px;
+}
+
+.music{
+  padding: 8px 24px;
+}
+
+.novel{
+  padding: 8px 24px;
+}
+
+.poem{
+  padding: 8px 24px;
+}
+
+.login{
+  padding: 8px 24px;
+}
+
+.btn-wrapper{
+  margin: 20px;
+}
+
+.btn-wrapper p{
+  margin: 10px 0;
+}
+
+.fa{
+  margin-right: 5px;
+}
+
+.action-wrapper{
+  height: 750px;
+  text-align: center;
+  z-index: 1;
+}
+
+.message-wrapper h2{
+  padding-top: 60px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.message-wrapper h3{
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.heading h2{
+  top: 46.5px;
+  padding: 20px 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 40px;
+  font-weight: bold;
+  background-color: rgba(174, 56, 70, 0.8);
+  z-index: 1;
+  position: relative;
+}
+
+.heading h3{
+  font-weight: bold;
+  padding-bottom: 30px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.action{
+  float: left;
+  width: 50%;
+}
+
+.action-icon{
+  position: relative;
+  top: 90px;
+  left: 90px;
+}
+
+.action-icon p{
+  position: absolute;
+  top: 20px;
+  right: 125px;
+  width: 130px;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(174, 56, 70, 0.9);
+  border-radius: 4px;
+}
+
+.action img{
+  width: 200px;
+  position: relative;
+  right: 90px;
+}
+
+.txt-contents{
+  width: 80%;
+  display: inline-block;
+  font-size: 12px;
+  color: #b3aeb5;
+  padding-top: 140px;
+}
+
+.txt-contents1{
+  font-size: 12px;
+  color: #b3aeb5;
+}
+
+.message-wrapper{
+  text-align: center;
+  background-color: rgba(174, 56, 70, 0.8);
+  padding-bottom: 50px;
+  position: relative;
+  z-index: 0;
+}
+
+.message{
+  padding: 15px 40px;
+  background-color: #165e83;
+}
+
+footer img{
+  width: 125px;
+}
+
+footer p{
+  font-size: 8px;
+  color: #b3aeb5;
+  padding-bottom: 20px;
+}
+
+footer{
+  padding-top: 30px;
+}
+
+
+
+
+
+
+/* --------------------------------------posterアートボード--------------------------------------------------- */
+
+
+input[type="radio"] + p {
+  display: inline-block;
+  color: white;
+  border-radius: 4%;
+  box-shadow: 2px 2px 3px #666666;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: .3s;
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  background-color: rgba(16, 55, 93, 0.9);
+}
+
+input[type="radio"]:checked + p {
+  box-shadow: none;
+  opacity: 1;
+  border: 4px solid rgba(174, 56, 70, 0.9);
+  background-color: rgba(174, 56, 70, 1);
+}
+
+input[type="radio"]{
+  display: none;
+}
+
+.back{
+  text-align: left;
+  float: left;
+  display: inline-block;
+  background-color: rgba(174, 56, 70, 0.9);
+  color: white;
+  border-radius: 4px;
+  transition: all 0.5s;
+  padding: 15px 40px;
+  margin: 10px 0;
+}
+
+.back:hover{
+  background-color: rgba(174, 56, 70, 0.7);
+}
+
+.save{
+  display: inline-block;
+  background-color: rgba(174, 56, 70, 0.9);
+  color: white;
+  border-radius: 4px;
+  transition: all 0.5s;
+  padding: 15px 40px;
+  margin: 10px 0;
+}
+
+.save:hover{
+  background-color: rgba(174, 56, 70, 0.7);
+}
+
+.next{
+  text-align: right;
+  float: right;
+  display: inline-block;
+  background-color: rgba(174, 56, 70, 0.9);
+  color: white;
+  border-radius: 4px;
+  transition: all 0.5s;
+  padding: 15px 40px;
+  margin: 10px 0;
+}
+
+.next:hover{
+  background-color: rgba(174, 56, 70, 0.7);
+}
+
+.edit{
+  margin: 0 auto;
+  margin-bottom: 140px;
+}
+
+.finish{
+  text-align: center;
+}
+
+#sidebar li{
+  list-style: none;
+}
+
+#sidebar{
+  background: #fffcf4;
+  border-radius :8px;
+  box-shadow :0px 0px 5px silver;
+  padding: 1em 2.5em 1em 0;
+  float: left;
+}
+
+#sidebaright li{
+  list-style: none;
+}
+
+#sidebaright img{
+  width: 300px;
+}
+
+#sidebaright{
+  float: right;
+  /* padding: 1em 2.5em 1em 0; */
+}
+
+.FileBtn {
+    border: 3px solid rgba(174, 56, 70, 0.9);
+    display: inline-block;
+    padding: 0 1em;
+    margin-bottom: 20px;
+    position: relative;
+    color: white;
+    background-color: rgba(174, 56, 70, 0.7);
+    transition: all 0.5s;
+    border-radius: 4px;
+}
+
+.FileBtn:hover{
+  background-color: rgba(174, 56, 70, 0.9);
+}
+
+.FileBtn input[type="file"] {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    cursor: pointer;
+}
+
+.fileb{
+  float:right;
+}
+
+.colorb{
+  list-style: none;
+}
+
+.contribute-background{
+  background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../images/aaa.jpeg");
+  background-size: cover;
+  top: 0;
+  padding: 80px 0 100px 0;
+  height: 1000px;
+  position: relative;
+}
+
+.contribute-contents{
+  list-style: none;
+  padding: 50px;
+  color: rgba(255, 255, 255, 0.7);
+  position: relative;
+  z-index: 1;
+}
+
+.contribute-bottom h2{
+  bottom: 33px;
+  padding: 20px 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 40px;
+  font-weight: bold;
+  background-color: rgba(174, 56, 70, 0.8);
+  z-index: 1;
+  position: relative;
+}
+
+.head-caption h1{
+  position: relative;
+  display: inline-block;
+  margin: 60px 0 60px 0;
+  padding: 1rem 2rem 1rem 3rem;
+  color: rgba(255, 255, 255, 0.8);
+  top: 20px;
+  font-size: 70px;
+}
+
+#theme1{
+  position: relative;
+  display: inline-block;
+  margin: 60px 0 0 0;
+  padding: 1rem 2rem 1rem 3rem;
+  color: rgba(0, 0, 0, 0.8);
+  top: 35px;
+  font-size: 70px;
+}
+
+#theme2{
+  margin: 30px 0 150px 0;
+}
+
+#theme{
+  position: relative;
+  display: inline-block;
+  margin: 60px 0 60px 0;
+  padding: 1rem 2rem 1rem 3rem;
+  color: rgba(0, 0, 0, 0.8);
+  top: 20px;
+  font-size: 70px;
+}
+
+.see-contents{
+  width: 300px;
+}
+
+.know-contents-modal{
+  width: 500px;
+}
+
+.heads-caption h2{
+  position: relative;
+  padding: 1rem .5rem;
+  top: 43px;
+  z-index: 1;
+}
+
+.heads-caption #message1{
+  text-align: left;
+  width: 661px;
+  left: -90px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.heads-caption #message2{
+  text-align: left;
+  width: 866px;
+  left: -90px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.heads-caption #message3{
+  left: 530px;
+  width: 360px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.heads-caption #message4{
+  margin: 0 auto;
+  width: 500px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.heads-caption #message1-comment{
+  text-align: left;
+  width: 600px;
+  left: -90px;
+}
+
+.heads-caption #message2-comment{
+  text-align: left;
+  width: 670px;
+  left: -90px;
+}
+
+.heads-caption h2:after{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  content: '';
+  border-radius: 3px;
+  background-color: rgba(174, 56, 70, 0.9)
+}
+
+.heads-caption{
+  margin-bottom: 150px;
+}
+
+.heads-caption #finish-message{
+  margin: 60px auto;
+  width: 800px;
+}
+
+.heads-caption #good-lack{
+  margin: 60px auto;
+  width: 800px;
+}
+
+.see-action{
+  float: left;
+  width: 20%;
+}
+
+.see-action-icon{
+  position: relative;
+
+}
+
+.see-action-icon p{
+  position: relative;
+  left: 78px;
+  width: 130px;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(174, 56, 70, 0.9);
+  border-radius: 4px;
+}
+
+.see-action img{
+  width: 200px;
+  position: relative;
+}
+
+#find-different{
+  padding-top: 16px;
+}
+
+.see-memo{
+  position: relative;
+  display: inline-block;
+  margin: 20px 0 60px 0;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 20px;
+}
+
+.now-up{
+  margin-bottom: 110px;
+}
+/* ------------------------------------------言語化プロセス------------------------------------------------ */
+.m-form-textarea {
+    display: block;
+    width: 100%;
+    height: 400px;
+    padding: 4px 16px;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0 0 0 1px #ccc inset;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    resize: vertical;
+}
+
+.m-form-textarea:focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+}
+/* ------------------------------------comment------------------------------------------ */
+#your_container{
+    /* 高さや幅など、好きな様に設定
+    bms_messages_containerの方で、縦横いっぱいに広がってくれるので、
+    ここで充てた高さと横幅がそのままスタイルになる仕組み */
+
+    height:600px;/*ここはご自由に*/
+    width: 100%;/*ここはご自由に*/
+}
+
+.box17{
+    margin:2em 0;
+    position: relative;
+    padding: 0.5em 1.5em;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+}
+.box17:before, .box17:after{
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: -webkit-calc(100% + 20px);
+    height: calc(100% + 20px);
+    background-color: black;
+}
+.box17:before {left: 10px;}
+.box17:after {right: 10px;}
+.box17 p {
+    margin: 0;
+    padding: 0;
+}
+
+/* チャットの外側部分① */
+#bms_messages_container{
+    height: 100%;/*your_containerに対して100%になる */
+    width: 100%;/*your_containerに対して100%になる */
+}
+
+/* ヘッダー部分② */
+#bms_chat_header {
+    padding: 6px;/*隙間調整*/
+    font-size: 16px;
+    height: 34px;
+}
+    /* ステータスマークとユーザー名 */
+    #bms_chat_user_status {
+        float: left;/* bms_chat_headerに対して左寄せ */
+    }
+    /* ステータスマーク */
+    #bms_status_icon {
+        float: left;/* bms_chat_user_statusに対して左寄せ */
+        line-height: 2em;/*高さ調整*/
+    }
+    /* ユーザー名 */
+    #bms_chat_user_name {
+        float: left;/* bms_chat_user_statusに対して左寄せ */
+        line-height: 2em;/*高さ調整*/
+        padding-left: 8px;
+    }
+
+/* タイムライン部分③ */
+#bms_messages {
+    overflow: auto;/* スクロールを効かせつつ、メッセージがタイムラインの外に出ないようにする */
+    height:100%;/*テキストエリアが下に張り付く様にする*/
+}
+    /* メッセージ全般のスタイル */
+    .bms_message {
+        margin: 0px;
+        padding: 0 14px;/*吹き出しがタイムラインの側面にひっつかない様に隙間を開ける*/
+        font-size: 16px;
+        word-wrap: break-word;/* 吹き出し内で自動で改行 */
+        white-space: normal;/*指定widthに合わせて、文字を自動的に改行*/
+    }
+    /*
+         *追加
+         */
+        .bms_message_box{
+            margin-top: 20px;/*上下の吹き出しがひっつかない様に隙間を入れる*/
+            max-width: 100%;/*文字が長くなった時に吹き出しがタイムラインからはみ出さない様にする*/
+            font-size: 16px;
+        }
+            /*
+            *追加
+            */
+            .bms_message_content{
+                padding: 20px;/*文字や画像（コンテンツ）の外側に隙間を入れる*/
+            }
+    /* メッセージ１（左側） */
+    .bms_left {
+        float: left;/*吹き出しをbms_messagesに対して左寄せ*/
+        line-height: 1.3em;
+    }
+    /*
+            *追加
+            */
+            .bms_left .bms_message_box {
+                color: #333;/*テキストを黒にする*/
+                background: #fff;
+                border: 2px solid rgba(174, 56, 70, 0.9);
+                border-radius: 30px 30px 30px 0px;/*左下だけ尖らせて吹き出し感を出す*/
+                margin-right: 50px;/*左側の発言だとわかる様に、吹き出し右側に隙間を入れる*/
+            }
+    /* メッセージ２（右側） */
+    .bms_right {
+        float: right;/*吹き出しをbms_messagesに対して右寄せ*/
+        line-height: 1.3em;
+    }
+    /*
+            *追加
+            */
+            .bms_right .bms_message_box {
+                color: #fff;/*テキストを白にする*/
+                background: rgba(174, 56, 70, 0.9);
+                border: 2px solid rgba(174, 56, 70, 0.9);
+                border-radius: 30px 30px 0px 30px;/*右下だけ尖らせて吹き出し感を出す*/
+                margin-left: 50px;/*右側の発言だとわかる様に、吹き出し左側に隙間を入れる*/
+            }
+    /* 回り込みを解除 */
+    .bms_clear {
+        clear: both; /* 左メッセージと右メッセージの回り込み(float)の効果の干渉を防ぐために必要（これが無いと、自分より下のメッセージにfloatが影響する） */
+
+    }
+
+/* テキストエリア、送信ボタン④ */
+#bms_send {
+    height: 48px;
+    padding: 4px;
+}
+    #bms_send_message{
+        width: calc(100% - 75px);/*常に送信ボタンの横幅を引いたサイズに動的に計算*/
+        line-height: 16px;
+        height: 48px;
+        padding: 14px 6px 0px 6px;/*文字がテキストエリアの中心になる様に隙間調整*/
+        border: 1px solid #ccc;
+        border-radius: 4px;/*角丸*/
+        text-align: left;/*文字を左寄せ*/
+        box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.2) inset;/*内側に影を入れてテキストエリアらしくした*/
+        box-sizing: border-box;/*paddingとborderの要素の高さと幅の影響をなくす（要素に高さと幅を含める）*/
+
+    }
+    #bms_send_btn {
+        width: 72px;
+        height: 48px;
+        font-size: 16px;
+        line-height: 3em;
+        float: right;/*bms_sendに対して右寄せ*/
+        color: #fff;
+        font-weight: bold;
+        background: rgba(174, 56, 70, 0.9);
+        text-align: center;/*文字をボタン中央に表示*/
+        border: 1px solid #bbb;
+        border-radius: 4px;/*角丸*/
+        box-sizing: border-box;/*paddingとborderの要素の高さと幅の影響をなくす（要素に高さと幅を含める）*/
+        transition: 0.5s;
+    }
+    #bms_send_btn:hover {
+        background: rgba(174, 56, 70, 0.7); /*マウスポインタを当てた時にアクティブな色になる*/
+        cursor: pointer;/*マウスポインタを当てた時に、カーソルが指の形になる*/
+    }
+
+    /*==========================================================================
+    .s_07 .accordion_one
+    ====================================================================*/
+    .s_07 .accordion_one {
+      max-width: 1024px;
+      margin: 0 auto;
+    }
+    .s_07 .accordion_one .accordion_header {
+      background-color: #db0f2f;
+      border-bottom: 1px solid #fff;
+      color: #fff;
+      font-size: 26px;
+      font-weight: bold;
+      padding: 20px 11%;
+      text-align: center;
+      position: relative;
+      z-index: +1;
+      cursor: pointer;
+      transition-duration: 0.2s;
+    }
+    .s_07 .accordion_one:nth-of-type(1) .accordion_inner .accordion_header {
+      background-color: #f52d4c;
+    }
+    .s_07 .accordion_one:nth-of-type(1) .accordion_inner .accordion_inner  .accordion_header {
+      background-color: #ff667e;
+    }
+    .s_07 .accordion_one:nth-of-type(2) .accordion_header {
+      background-color: #ff9a05;
+    }
+    .s_07 .accordion_one:nth-of-type(2) .accordion_inner .accordion_header {
+      background-color: #ffb64a;
+    }
+    .s_07 .accordion_one:nth-of-type(2) .accordion_inner .accordion_inner  .accordion_header {
+      background-color: #ffce85;
+    }
+    .s_07 .accordion_one:nth-of-type(3) .accordion_header {
+      background-color: #1c85d8;
+    }
+    .s_07 .accordion_one:nth-of-type(3) .accordion_inner .accordion_header {
+      background-color: #4cacf9;
+    }
+    .s_07 .accordion_one:nth-of-type(3) .accordion_inner .accordion_inner  .accordion_header {
+      background-color: #85c9ff;
+    }
+    .s_07 .accordion_one .accordion_header:hover {
+      opacity: .8;
+    }
+    .s_07 .accordion_one .accordion_header .i_box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #fff;
+      margin-top: -20px;
+      box-sizing: border-box;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      transform-origin: center center;
+      transition-duration: 0.2s;
+    }
+    .s_07 .accordion_one .accordion_header .i_box .one_i {
+      display: block;
+      width: 18px;
+      height: 18px;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      transform-origin: center center;
+      transition-duration: 0.2s;
+      position: relative;
+    }
+    .s_07 .accordion_one .accordion_header.open .i_box {
+      -webkit-transform: rotate(-360deg);
+      transform: rotate(-360deg);
+    }
+    .s_07 .accordion_one .accordion_header .i_box .one_i:before, .s_07 .accordion_one .accordion_header .i_box .one_i:after {
+      display: flex;
+      content: '';
+      background-color: #fff;
+      border-radius: 10px;
+      width: 18px;
+      height: 4px;
+      position: absolute;
+      top: 7px;
+      left: 0;
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+      transform-origin: center center;
+    }
+    .s_07 .accordion_one .accordion_header .i_box .one_i:before {
+      width: 4px;
+      height: 18px;
+      top: 0;
+      left: 7px;
+    }
+    .s_07 .accordion_one .accordion_header.open .i_box .one_i:before {
+      content: none;
+    }
+    .s_07 .accordion_one .accordion_header.open .i_box .one_i:after {
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+    .s_07 .accordion_one .accordion_inner {
+      display: none;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .s_07 .accordion_one .accordion_inner .box_one {
+      height: 300px;
+    }
+    .s_07 .accordion_one .accordion_inner p.txt_a_ac {
+      margin: 0;
+    }
+    @media screen and (max-width: 1024px) {
+      .s_07 .accordion_one .accordion_header {
+        font-size: 18px;
+      }
+      .s_07 .accordion_one .accordion_header .i_box {
+        width: 30px;
+        height: 30px;
+        margin-top: -15px;
+      }
+    }
+    @media screen and (max-width: 767px) {
+      .s_07 .accordion_one .accordion_header {
+        font-size: 16px;
+        text-align: left;
+        padding: 15px 60px 15px 15px;
+      }
+    }
+
+
+
+/* --------------------------------------たぶ---------------------------------------------- */
+
+.area {
+  width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+  display: flex;
+}
+ 
+.tab_class {
+  width: calc(100%/3);
+  height: 50px;
+  background-color: rgb(255, 151, 179, 0.9);
+  line-height: 50px;
+  font-size: 15px;
+  text-align: center;
+  display: block;
+  float: left;
+  order: -1;
+}
+ 
+input[name="tab_name"] {
+  display: none;
+}
+ 
+input:checked + .tab_class {
+  background-color: cadetblue;
+  color: aliceblue;
+}
+ 
+.content_class {
+  display: none;
+  width: 100%;
+}
+ 
+input:checked + .tab_class + .content_class {
+  display: block;
+}
+
+/* ------------------------------------modal-------------------------------------------- */
+.modal-header h1 {
+  margin: 1rem 0;
+}
+
+.modal-header {
+  background: rgba(174, 56, 70, 0.9);
+  padding: 3px 15px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  border-radius: 4px;
+}
+
+.modal-body {
+  padding: 10px 20px;
+  color: black;
+  display: flex;
+}
+
+.ooo{
+  margin: 120px 80px 0 100px;
+}
+
+.lisence{
+  margin-top: 60px;
+}
+
+/* モーダル全体(背景＋本体) */
+.modal{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 3;
+}
+
+/* モーダル背景 */
+.modal-bg{
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* モーダル本体 */
+.modal-contents{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: scroll; /* はみ出た部分はスクロールさせる */
+  height: 70%;/* これが無いと「overflow:scroll」が利かない */
+  width: 80%;/* これが無いと「overflow:scroll」が利かない */
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+}
+
+.cross{
+  font-size: 30px;
+}
+
+.cross:hover{
+  cursor: pointer;
+}
+
+/* モーダルウィンドウ表示中に記事本体を固定 */
+body.fixed {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+}
+
+.js-modal-open{
+  display: inline-block;
+  border-radius: 4%;
+  box-shadow: 2px 2px 3px #666666;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: .3s;
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  background-color: white;
+}
+
+.js-modal-open:hover{
+  box-shadow: none;
+  opacity: 1;
+  border: 4px solid rgba(174, 56, 70, 0.9);
+  background-color: rgba(174, 56, 70, 1);
+}
+/* ----------------------------video------------------------------------------------------ */
+.video-know-sideway{
+  width: 200px;
+  height: 133px;
+}
+/* ----------------------------------ログイン---------------------------------------------- */
+
+
+
+
+
+
+/*ログインフォームのエリア内のスタイル*/
+.box{
+    width: 300px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(174, 56, 70, 0.9);
+    text-align: center;
+}
+
+.box{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* ユーザーIDとパスワード入力ボックスのスタイル */
+.box input[type="text"], .box input[type="password"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 4px;
+    transition: 0.25s;
+}
+
+/* 入力ボックスがフォーカスされたときのスタイル（幅が大きくなる＆枠の色が変わる） */
+.box input[type="text"]:focus, .box input[type="password"]:focus{
+    width: 280px;
+    border-color: #5dca88;
+}
+
+/* Loginボタンのスタイル */
+.box input[type="submit"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #5dca88;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 4px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+/* Loginボタンをマウスオーバーしたときのスタイル */
+.box input[type="submit"]:hover{
+    background: #5dca88;
+
+}
+
+.errors{
+  font-size: 10px;
+  font-weight: bold;
+  color: #ED5974;
+  border: 1px solid #e29a9a;
+  padding: 12px 34px;
+  line-height: 1.6;
+  border-radius: 4px;
+  list-style: outside;
+  background-color: #fff;
+  margin-top: 30px;
+}
+
+
+
+
+/* -----------------------------------ハンバーガーメニュー---------------------------------------------- */
+
+
+
+
+
+
+
+#humMenu {
+  padding: 15px 15px 20px 15px;
+}
+
+#humCheck, #humClose { display:none; }
+#humOpen {
+  display: block;
+  width: 27px;
+  cursor: pointer;
+}
+#humOpen:hover {
+  opacity: 0.5;
+}
+#humOpen img { display: block; }
+#humClose, nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+#humClose {
+  z-index: 2;
+  width: 100%;
+  background: gray;
+  opacity: 0.8;
+  transition: 0.5s;
+}
+nav {
+  z-index: 3;
+  width: 330px;
+  background: white;
+  transition: 0.5s;
+  transform: translateX(-100%);
+}
+#humCheck:checked ~ #humClose { display: block; }
+#humCheck:checked ~ nav {
+  transform: translateX(0);
+}
+nav ul{
+overflow: hidden;
+list-style: none;
+}
+nav li{
+  padding: 15px 0;
+  margin: 10px 0;
+}
+nav li:hover{
+  opacity: 0.5;
+}
+nav li a{
+  font-size: 20px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+}
+
+.fa-bars{
+  color: white;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>poster-finish</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src = "/send_url.js"></script>
+    <style>
+      .back-top{
+        text-align: center;
+        display: inline-block;
+        background-color: rgba(174, 56, 70, 0.9);
+        color: white;
+        border-radius: 4px;
+        transition: all 0.5s;
+        padding: 15px 40px;
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include("header"); %>
+    <div class="action-wrapper" id="flex">
+      <div class="container" id="board">
+        <div class="heads-caption">
+          <h2 id="finish-message">好みの作品を手に入れることができましたか？</h2>
+          <h2 id="good-lack">その作品の良い・すごいと思うところを他の人と共有してみよう！</h2>
+        </div>
+        <a href = "/prof" class="back-top">購入作品を確認する</a>
+        <a href = "/" class="back-top">TOPに戻る</a>
+      </div>
+    </div>
+  </body>
+</html>

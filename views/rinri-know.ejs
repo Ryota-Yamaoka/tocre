@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>poster-model-select</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <%- include("header"); %>
+    <div class="action-wrapper">
+      <div class="container" id="board">
+        <div class="model-select">
+          <form class="" action="poster-input-image" method="get">
+            <div class="head-caption">
+              <h2 id="hack-message">倫理</h2>
+            </div>
+            <div class="know-contents">
+              <a href="#" class="js-modal-open" data-target="modal01"><img src="../images/buta.png"></img></a>
+            </div>
+            <div class="heads-caption">
+              <h2 id = "message3">たくさんの視点を持とう。</h2>
+            </div>
+          </form>
+
+          <div id="modal01" class="modal js-modal">
+            <div class="modal-bg js-modal-close">
+            </div>
+            <div class="modal-contents">
+              <div class="modal-header">
+              　　<h1>作品詳細</h1>
+            　　　<span class="js-modal-close cross">×</span>
+              　</div>
+                <div class="modal-body">
+                  <div class="lisence">
+                    <h3>解説：食糧ロス</h3>
+                    <a href="/painting-comment">他の人の解釈を見る</a>
+                    <p>What I am inspired：食べ物を残している友人</p>
+                    <p>制作者：RYOTA YAMAOKA</p>
+                    <p><a href="/purchase">購入する</a>：100p</p>
+                  </div>
+                  <div class="ooo">
+                    <img src="../images/buta.png"></img>
+                  </div>
+              　</div>
+            </div>
+          </div>
+
+        </div>
+        <a href = "/painting-know" class="back">戻る</a>
+      </div>
+    </div>
+    <%- include("modaldal"); %>
+  </body>
+</html>

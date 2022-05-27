@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>create-select</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src = "/send_url.js"></script>
+  </head>
+  <body>
+    <%- include("header"); %>
+    <div class="action-wrapper">
+        <div class="background-wrap contribute-background">
+          <div class="head-caption">
+            <h1>「感創」を共有する</h1>
+          </div>
+          <div class="heading">
+            <h2>あなたの作品は「どこかの誰か」の視点を増やす。</h2>
+          </div>
+          <div class="contribute-contents">
+            <h2>tocreは、「感創」共有プラットフォームです。</h2>
+            <h2>作品を共有すると、あなたと世の中に以下のような効果があります。</h2><br>
+            <li>ある体験を、あなた独自の視点から発信できる。</li>
+            <li>体験に対する各々の考えを共有できる。</li>
+            <li>新たな体験を提示できる。</li>
+            <li>ポイントが獲得できる。</li><br>
+          </div>
+        </div>
+        <div class="contribute-bottom">
+          <h2>※「感創」でありさえすればいいです。</h2><br><br>
+        </div>
+      <div class="container">
+        <div>
+          <th>カテゴリー</th><br>
+          <label>
+            <input type="checkbox" name="" value="">絵画
+          </label>
+          <label>
+            <input type="checkbox" name="" value="">楽曲
+          </label>
+          <label>
+            <input type="checkbox" name="" value="">動画
+          </label>
+          <label>
+            <input type="checkbox" name="" value="">ポスター
+          </label>
+          <label>
+            <input type="checkbox" name="" value="">服
+          </label>
+          <label>
+            <input type="checkbox" name="" value="">もの
+          </label>
+          <label>
+            <input type="checkbox" name="" value="">詩
+          </label>
+          <label>
+            <input type="checkbox" name="" value="">漫画
+          </label>
+          <label>
+            <input type="checkbox" name="" value="">メディアアート
+          </label>
+          <label>
+            <input type="checkbox" name="" value="">小説
+          </label><br><br>
+          <div class="FileBtn">
+            作品ファイル
+            <input type="file" id = "input">
+          </div><br><br>
+        </div>
+        <a href = "/" class="back">戻る</a>
+        <a href = "/contribute-finish" class="next">共有する</a>
+      </div>
+    </div>
+  </body>
+</html>

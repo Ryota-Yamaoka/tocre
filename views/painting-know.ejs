@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>poster-model-select</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <%- include("header"); %>
+    <div class="action-wrapper">
+      <div class="model-select">
+        <form action="poster-input-image" method="get">
+          <div class="background-wrap contribute-background head-caption">
+            <h1>「感創」を鑑賞して、考える。</h1>
+            <div class="heading">
+              <h2>これらは、他の人が何らかの体験を「感創」したものです。</h2>
+            </div>
+            <div id="find-different">
+              <h1>違う価値観を探してみよう。</h1>
+            </div>
+            <div class="heading">
+              <h2>※感じ方は違って当たり前です。</h2>
+            </div>
+          </div>
+          <div class="container">
+            <div class="see-memo">
+              <h1>体験一覧</h1>
+              <div class="">
+                <a href="#" class="js-modal-open" data-target="modal01"><p>作品をアップロード</p></a>
+              </div>
+              <div id="modal01" class="modal js-modal">
+                <div class="modal-bg js-modal-close">
+                </div>
+                <div class="modal-contents">
+                  <div class="modal-header">
+                  　　<h1>作品をアップロードする</h1>
+                　　　<span class="js-modal-close cross">×</span>
+                  　</div>
+                    <div class="modal-body">
+                      <div class="lisence">
+                        <h3>体験（テーマ）を選択して、君の作品を見てもらおう。</h3>
+                        <div class="FileBtn">
+                          <p class="btn">ファイルを選択</p>
+                          <input type="file" id="input">
+                        </div>
+                        <img id="img" width="200px">
+                        <div>
+                          <th>体験（テーマ）</th><br>
+                          <%- include("accordion"); %><br>
+                        </div>
+                        <p>作品タイトル（任意）</p>
+                        <div>
+                          <p>『<input type="text" id="bms_send_message" placeholder="例 『What is believing』">』</p>
+                        </div>
+                        <p>解説</p>
+                        <div>
+                          <textarea name="name" class="m-form-textarea" placeholder="例 『走れメロス』を読んだ時に、自分の中で「信じるということ」は、考えの中に自分を1mmも取り込まないということだと考えた。利己的にならなかった時に、真の信実が実現するのだ。それをものさしを使って表現した。"></textarea>
+                        </div>
+                        <p>What I am inspired(元となった体験)</p>
+                        <div>
+                          <p>『<input type="text" id="bms_send_message" placeholder="例 『走れメロス』">』</p>
+                        </div>
+                        <p>他の誰か1人だけがこの作品を100pでコレクションすることができます。</p>
+                        <div>
+                          <label>
+                            <input type="checkbox" name="" value="">匿名でアップロードする。
+                          </label>
+                        </div>
+                        <button id="bms_send_btn">決定</button>
+                      </div>
+                  　</div>
+                </div>
+              </div>
+              <p>タグ検索</p>
+              <div class="textoverlay-wrapper" style="margin: 0px; padding: 0px; overflow: hidden; display: block; position: relative;">
+                <div class="textoverlay" style="position: absolute; color: transparent; white-space: pre-wrap; word-wrap: break-word; overflow: hidden; margin: 0px; padding: 6px 12px; font-family: sans-serif; font-weight: 400; font-size: 14px; background-color: rgb(255, 255, 255); top: 1px; right: 1px; bottom: 1px; left: 1px;"><span style="background-color: #D9EAFE"></span> <span style="background-color: #D9EAFE"></span></div>
+                <input type="text" autocomplete="off" class="form-control" name="draft_item[tag_notation]" placeholder="作品のテーマに関するタグをスペース区切りで5つまで入力" tabindex="2" value="" style="background: transparent; position: relative; outline: 0px;">
+              </div>
+            </div>
+            <%- include("all-theme"); %>
+            <div class="see-memo">
+              <h1>創作メモ</h1>
+              <p>作品をつくる上でのコンセプト・参考にする表現方法などをメモしておこう</p>
+              <textarea name="name" class="m-form-textarea" placeholder="例 走れメロスの信実について・絵で表現・学校での友達とのじゃれあいのシーンで表現"></textarea>
+            </div>
+            <div class="">
+              <a href="#" class="js-modal-open" data-target="modal02"><p>体験の追加リクエスト</p></a>
+            </div>
+            <div id="modal02" class="modal js-modal">
+              <div class="modal-bg js-modal-close">
+              </div>
+              <div class="modal-contents">
+                <div class="modal-header">
+                　　<h1>体験（テーマ）の追加</h1>
+              　　　<span class="js-modal-close cross">×</span>
+                　</div>
+                  <div class="modal-body">
+                    <div class="lisence">
+                      <h3>当てはまる体験がない時は、追加をリクエストしてみよう。</h3>
+                      <p>例を参考に入力してみよう。</p>
+                      <div>
+	                       <input type="text" id="bms_send_message" placeholder="例 レストランでの食事">
+                         <button id="bms_send_btn">送信</button>
+                      </div>
+                    </div>
+                　</div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <a href = "/" class="back">戻る</a>
+      </div>
+    </div>
+    <script>
+    // モーダルウィンドウを開く
+    $('.js-modal-open').on('click', function(){
+      var target = $(this).data('target');
+      var modal = document.getElementById(target);
+      scrollPosition = $(window).scrollTop();
+
+      $('body').addClass('fixed').css({'top': -scrollPosition});
+      $(modal).fadeIn();
+      return false;
+    });
+
+    // モーダルウィンドウを閉じる
+    $('.js-modal-close').on('click', function(){
+      $('body').removeClass('fixed');
+      window.scrollTo( 0 , scrollPosition );
+      $('.js-modal').fadeOut();
+      return false;
+    });
+  </script>
+  <script type="text/javascript">
+      $(".tag-input").on("keydown", function(e){
+
+      //スペースかエンターをおせばタグ作成
+      if(e.keyCode == 13 || e.keyCode == 32 || e.keyCode == 229){
+        var $text = this.value
+        var $prev_txt = $("." + $type + "-tag-value").text()
+        $("input[data-type=" + $type + "]").before(add_tag($text, $type))
+        $("." + $type + "-tag-value").text($prev_txt + " " + $text)
+        this.value = ""
+        }
+    });
+  </script>
+  <script type="text/javascript">
+    document.querySelector('#input').addEventListener('change', (event) => {
+      const file = event.target.files[0]
+      // fileがundefinedの時にreader.readAsDataURL(file)がエラーになるため、
+      // !fileがfalseの場合にreturnする。
+      if (!file) return
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        document.querySelector('#img').src = event.target.result
+      }
+      reader.readAsDataURL(file)
+    })
+  </script>
+  <script type="text/javascript">
+    let ok = document.getElementById("bms_send_btn");
+    $("button").click(function(){
+      // 全てのチェック済みvalue値を取得する
+      $("input:ckecked").each(function(){
+        var r = $(this).val();
+
+        console.log(r);
+      })
+    })
+  </script>
+  </body>
+</html>
