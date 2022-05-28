@@ -14,8 +14,11 @@
     <div id="firebaseui-auth-container"></div>
     <div id="loader">Loading...</div>
 
+<!-- 以下のコードで login 3.ejs ファイルの中だけで新規登録・ログインをすることはできる。 -->
+<!-- これを app.js ファイルとも連携して、全てのページでユーザーごとに処理をわけられるようにしたい。 -->
+
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
-    <!-- <script>
+    <script>
       
       // Initialize Firebase
       var config = {
@@ -26,7 +29,7 @@
         messagingSenderId: "1027348099985",
       };
       firebase.initializeApp(config);
-    </script> -->
+    </script>
 
     <script type="text/javascript">
             var ui = new firebaseui.auth.AuthUI(firebase.auth());

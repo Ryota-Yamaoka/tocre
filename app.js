@@ -1,9 +1,11 @@
-// const firebase = require('firebase/auth');
+// ターミナルで node app.js と打つと、 localhost:3000 で動く。
+// 8~27行目のfirebase関係のコードのコメントアウトを元に戻したらエラーが出て動かなくなる。
+
 const express = require('express');
 const app = express();
-// const mysql = require('mysql2');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
+// const firebase = require('firebase/auth');
 // const auth = firebase.getAuth();
 // const user = auth.currentUser;
 // var config = {
@@ -14,8 +16,6 @@ const bcrypt = require('bcrypt');
 //   messagingSenderId: "1027348099985",
 // };
 // firebase.initializeApp(config);
-
-
 
 // if (user !== null) {
 //   // The user object has basic properties such as display name, email, etc.
@@ -29,21 +29,6 @@ const bcrypt = require('bcrypt');
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
 
-// const connection = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'yama20020420',
-//   database: 'tocre'
-// });
-
-// connection.connect((err) => {
-//   if (err) {
-//     console.log('error connecting: ' + err.stack);
-//     return;
-//   }
-//   console.log('success');
-// });
-
 app.use(
   session({
     secret: 'my_secret_key',
@@ -52,18 +37,20 @@ app.use(
   })
 )
 
-// app.use((req, res, next) => {
-//   if(req.session.userId === undefined){
-//     console.log("ログインしていません");
-//     res.locals.username = "ゲスト";
-//     res.locals.isLoggedIn = false;
-//   }else{
-//     console.log("ログインしています");
-//     res.locals.username = req.session.username;
-//     res.locals.isLoggedIn = true;
-//   }
-//   next();
-// })
+// 元々ここでmysqlを用いた認証機能を作ろうとしていた。
+// このusernameを用いたユーザーの判別はtop.ejsで使おうとしている。このコードを少し書き換えてfirebaseで使えるようにしたい。
+app.use((req, res, next) => {
+  if(req.session.userId === undefined){
+    console.log("ログインしていません");
+    res.locals.username = "ゲスト";
+    res.locals.isLoggedIn = false;
+  }else{
+    console.log("ログインしています");
+    res.locals.username = req.session.username;
+    res.locals.isLoggedIn = true;
+  }
+  next();
+})
 
 app.get('/', (req, res) => {
   res.render('top.ejs');
