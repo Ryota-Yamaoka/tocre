@@ -72,18 +72,8 @@
                   　</div>
                 </div>
               </div>
-              <p>タグ検索</p>
-              <div class="textoverlay-wrapper" style="margin: 0px; padding: 0px; overflow: hidden; display: block; position: relative;">
-                <div class="textoverlay" style="position: absolute; color: transparent; white-space: pre-wrap; word-wrap: break-word; overflow: hidden; margin: 0px; padding: 6px 12px; font-family: sans-serif; font-weight: 400; font-size: 14px; background-color: rgb(255, 255, 255); top: 1px; right: 1px; bottom: 1px; left: 1px;"><span style="background-color: #D9EAFE"></span> <span style="background-color: #D9EAFE"></span></div>
-                <input type="text" autocomplete="off" class="form-control" name="draft_item[tag_notation]" placeholder="作品のテーマに関するタグをスペース区切りで5つまで入力" tabindex="2" value="" style="background: transparent; position: relative; outline: 0px;">
-              </div>
             </div>
             <%- include("all-theme"); %>
-            <div class="see-memo">
-              <h1>創作メモ</h1>
-              <p>作品をつくる上でのコンセプト・参考にする表現方法などをメモしておこう</p>
-              <textarea name="name" class="m-form-textarea" placeholder="例 走れメロスの信実について・絵で表現・学校での友達とのじゃれあいのシーンで表現"></textarea>
-            </div>
             <div class="">
               <a href="#" class="js-modal-open" data-target="modal02"><p>体験の追加リクエスト</p></a>
             </div>
@@ -130,19 +120,6 @@
       window.scrollTo( 0 , scrollPosition );
       $('.js-modal').fadeOut();
       return false;
-    });
-  </script>
-  <script type="text/javascript">
-      $(".tag-input").on("keydown", function(e){
-
-      //スペースかエンターをおせばタグ作成
-      if(e.keyCode == 13 || e.keyCode == 32 || e.keyCode == 229){
-        var $text = this.value
-        var $prev_txt = $("." + $type + "-tag-value").text()
-        $("input[data-type=" + $type + "]").before(add_tag($text, $type))
-        $("." + $type + "-tag-value").text($prev_txt + " " + $text)
-        this.value = ""
-        }
     });
   </script>
   <script type="text/javascript">

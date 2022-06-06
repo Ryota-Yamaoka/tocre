@@ -1,28 +1,50 @@
 // ターミナルで node app.js と打つと、 localhost:3000 で動く。
-// 8~27行目のfirebase関係のコードのコメントアウトを元に戻したらエラーが出て動かなくなる。
+// 9~49行目のfirebase関係のコードのコメントアウトを元に戻したらエラーが出て動かなくなる。
 
 const express = require('express');
 const app = express();
 const session = require('express-session');
 const bcrypt = require('bcrypt');
-// const firebase = require('firebase/auth');
-// const auth = firebase.getAuth();
-// const user = auth.currentUser;
-// var config = {
-//   apiKey: "AIzaSyAxetUkclvXWGL9ZvYKoGfnxWbtAmYcHg0",
-//   authDomain: "t0cre8.firebaseapp.com",
-//   databaseURL: "https://t0cre8.firebaseio.com",
-//   storageBucket: "t0cre8.appspot.com",
-//   messagingSenderId: "1027348099985",
-// };
-// firebase.initializeApp(config);
 
+// import { initializeApp } from 'firebase/app';
+// import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+// // Follow this pattern to import other Firebase services
+// // import { } from 'firebase/<service>';
+
+// // TODO: Replace the following with your app's Firebase project configuration
+// const firebaseConfig = {
+//         apiKey: x,
+//         authDomain: x,
+//         databaseURL: x,
+//         storageBucket: x,
+//         messagingSenderId: x,
+// };
+
+// const firebaseapp = initializeApp(firebaseConfig);
+// const db = getFirestore(firebaseapp);
+
+// // Get a list of cities from your database
+// async function getCities(db) {
+//   const citiesCol = collection(db, 'cities');
+//   const citySnapshot = await getDocs(citiesCol);
+//   const cityList = citySnapshot.docs.map(doc => doc.data());
+//   return cityList;
+// }
+
+// import { getAuth } from "firebase/auth";
+
+// const auth = getAuth();
+// const user = auth.currentUser;
 // if (user !== null) {
 //   // The user object has basic properties such as display name, email, etc.
 //   const displayName = user.displayName;
 //   const email = user.email;
 //   const photoURL = user.photoURL;
 //   const emailVerified = user.emailVerified;
+
+//   // The user's ID, unique to the Firebase project. Do NOT use
+//   // this value to authenticate with your backend server, if
+//   // you have one. Use User.getToken() instead.
 //   const uid = user.uid;
 // }
 

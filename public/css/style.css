@@ -948,7 +948,8 @@ input[type="radio"]{
 .tab_class {
   width: calc(100%/3);
   height: 50px;
-  background-color: rgb(255, 151, 179, 0.9);
+  background-color: #165e83;
+  color: white;
   line-height: 50px;
   font-size: 15px;
   text-align: center;
@@ -962,8 +963,8 @@ input[name="tab_name"] {
 }
  
 input:checked + .tab_class {
-  background-color: cadetblue;
-  color: aliceblue;
+  background-color: rgba(174, 56, 70, 0.9);
+  color: white;
 }
  
 .content_class {
