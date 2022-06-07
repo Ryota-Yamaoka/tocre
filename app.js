@@ -6,47 +6,47 @@ const app = express();
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 
-// import { initializeApp } from 'firebase/app';
-// import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-// // Follow this pattern to import other Firebase services
-// // import { } from 'firebase/<service>';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+// Follow this pattern to import other Firebase services
+// import { } from 'firebase/<service>';
 
-// // TODO: Replace the following with your app's Firebase project configuration
-// const firebaseConfig = {
-//         apiKey: x,
-//         authDomain: x,
-//         databaseURL: x,
-//         storageBucket: x,
-//         messagingSenderId: x,
-// };
+// TODO: Replace the following with your app's Firebase project configuration
+const firebaseConfig = {
+        apiKey: "AIzaSyAxetUkclvXWGL9ZvYKoGfnxWbtAmYcHg0",
+        authDomain: "t0cre8.firebaseapp.com",
+        databaseURL: "https://t0cre8.firebaseio.com",
+        storageBucket: "t0cre8.appspot.com",
+        messagingSenderId: "1027348099985",
+};
 
-// const firebaseapp = initializeApp(firebaseConfig);
-// const db = getFirestore(firebaseapp);
+const firebaseapp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseapp);
 
-// // Get a list of cities from your database
-// async function getCities(db) {
-//   const citiesCol = collection(db, 'cities');
-//   const citySnapshot = await getDocs(citiesCol);
-//   const cityList = citySnapshot.docs.map(doc => doc.data());
-//   return cityList;
-// }
+// Get a list of cities from your database
+async function getCities(db) {
+  const citiesCol = collection(db, 'cities');
+  const citySnapshot = await getDocs(citiesCol);
+  const cityList = citySnapshot.docs.map(doc => doc.data());
+  return cityList;
+}
 
-// import { getAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
-// const auth = getAuth();
-// const user = auth.currentUser;
-// if (user !== null) {
-//   // The user object has basic properties such as display name, email, etc.
-//   const displayName = user.displayName;
-//   const email = user.email;
-//   const photoURL = user.photoURL;
-//   const emailVerified = user.emailVerified;
+const auth = getAuth();
+const user = auth.currentUser;
+if (user !== null) {
+  // The user object has basic properties such as display name, email, etc.
+  const displayName = user.displayName;
+  const email = user.email;
+  const photoURL = user.photoURL;
+  const emailVerified = user.emailVerified;
 
-//   // The user's ID, unique to the Firebase project. Do NOT use
-//   // this value to authenticate with your backend server, if
-//   // you have one. Use User.getToken() instead.
-//   const uid = user.uid;
-// }
+  // The user's ID, unique to the Firebase project. Do NOT use
+  // this value to authenticate with your backend server, if
+  // you have one. Use User.getToken() instead.
+  const uid = user.uid;
+}
 
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
