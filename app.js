@@ -6,8 +6,9 @@ const app = express();
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+const  { initializeApp } = require('firebase/app');
+const { getFirestore, collection, getDocs } = require('firebase/firestore/lite');
+
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 
@@ -18,6 +19,7 @@ const firebaseConfig = {
         databaseURL: "https://t0cre8.firebaseio.com",
         storageBucket: "t0cre8.appspot.com",
         messagingSenderId: "1027348099985",
+        projectId: "t0cre8"
 };
 
 const firebaseapp = initializeApp(firebaseConfig);
@@ -31,7 +33,7 @@ async function getCities(db) {
   return cityList;
 }
 
-import { getAuth } from "firebase/auth";
+const  { getAuth } =  require("firebase/auth");
 
 const auth = getAuth();
 const user = auth.currentUser;
