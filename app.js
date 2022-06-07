@@ -14,7 +14,7 @@ const { getFirestore, collection, getDocs } = require('firebase/firestore/lite')
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
-        apiKey: "AIzaSyAxetUkclvXWGL9ZvYKoGfnxWbtAmYcHg0",
+        apiKey: x,
         authDomain: "t0cre8.firebaseapp.com",
         databaseURL: "https://t0cre8.firebaseio.com",
         storageBucket: "t0cre8.appspot.com",
