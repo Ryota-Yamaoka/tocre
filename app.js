@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 require('dotenv').config();
+const bodyParser = require('body-parser');
 
 const  { initializeApp } = require('firebase/app');
 const { getFirestore, collection, getDocs } = require('firebase/firestore/lite');
@@ -20,35 +21,10 @@ const firebaseConfig = {
 };
 
 const firebaseapp = initializeApp(firebaseConfig);
-const db = getFirestore(firebaseapp);
-
-// Get a list of cities from your database
-async function getCities(db) {
-  const citiesCol = collection(db, 'cities');
-  const citySnapshot = await getDocs(citiesCol);
-  const cityList = citySnapshot.docs.map(doc => doc.data());
-  return cityList;
-}
-
-const  { getAuth } =  require("firebase/auth");
-
-const auth = getAuth();
-const user = auth.currentUser;
-if (user !== null) {
-  // The user object has basic properties such as display name, email, etc.
-  const displayName = user.displayName;
-  const email = user.email;
-  const photoURL = user.photoURL;
-  const emailVerified = user.emailVerified;
-
-  // The user's ID, unique to the Firebase project. Do NOT use
-  // this value to authenticate with your backend server, if
-  // you have one. Use User.getToken() instead.
-  const uid = user.uid;
-}
 
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.use(
   session({
@@ -61,13 +37,17 @@ app.use(
 // 元々ここでmysqlを用いた認証機能を作ろうとしていた。
 // このusernameを用いたユーザーの判別はtop.ejsで使おうとしている。このコードを少し書き換えてfirebaseで使えるようにしたい。
 app.use((req, res, next) => {
-  if(req.session.userId === undefined){
+  console.log(">>>>>>>>>>>>>>>>>>>>>>", req.session.username);
+  console.log(">>>>>>>>>>>>>>>>>>>>>>",res.locals.username);
+  console.log(">>>>>>>>>>>>>>>>>>>>>>",req.body.name);
+    
+  if(!res.locals.username && !req.body.name ){
     console.log("ログインしていません");
     res.locals.username = "ゲスト";
     res.locals.isLoggedIn = false;
   }else{
     console.log("ログインしています");
-    res.locals.username = req.session.username;
+    res.locals.username = req.body.name;
     res.locals.isLoggedIn = true;
   }
   next();
@@ -86,7 +66,9 @@ app.get("/login", (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-
+    res.locals.username = req.body.name;
+    res.locals.userId = req.body.id;
+    res.redirect("/");
 });
 
 app.get("/logout", (req, res) => {
