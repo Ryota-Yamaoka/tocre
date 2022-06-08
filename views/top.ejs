@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <script src = "/send_url.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <style>
       #humMenu{
         padding: 0 15px 20px 15px;
@@ -38,7 +39,7 @@
             <nav>
               <ul class="inner">
         <%  if(locals.isLoggedIn){ %>
-                <li><p>ようこそ、<%= locals.displayName %>さん</p></li>
+                <li><p>ようこそ、<%= locals.username %>さん</p></li>
                 <!-- ログインしたユーザーごとにアカウントを分ける -->
                 <li><a href="#">プロフィール</a></li>
                 <li><a href="#">アカウント設定</a></li>
@@ -70,6 +71,9 @@
       <div class="image-wrap">
         <img src="images/">
       </div>
+          <div id="sign-in-status"></div>
+    <div id="sign-in"></div>
+    <pre id="account-details"></pre>
       <div class="container">
         <h1>ちょっとした体験に「感創」を。</h1>
         <h2>A little bit of experience, a little bit of art.</h2>

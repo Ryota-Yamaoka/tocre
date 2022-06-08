@@ -29,31 +29,36 @@ app.use(bodyParser.json());
 app.use(
   session({
     secret: 'my_secret_key',
-    resave: false,
-    saveUninitialized: false,
+    // resave: false,
+    // saveUninitialized: false,
   })
 )
 
 // 元々ここでmysqlを用いた認証機能を作ろうとしていた。
 // このusernameを用いたユーザーの判別はtop.ejsで使おうとしている。このコードを少し書き換えてfirebaseで使えるようにしたい。
 app.use((req, res, next) => {
-  console.log(">>>>>>>>>>>>>>>>>>>>>>", req.session.username);
-  console.log(">>>>>>>>>>>>>>>>>>>>>>",res.locals.username);
-  console.log(">>>>>>>>>>>>>>>>>>>>>>",req.body.name);
-    
-  if(!res.locals.username && !req.body.name ){
+  console.log(">>>>>>>>>>>>>>>>>>>>>>",req.session.username);
+  
+  if(!req.session.username && !req.body.name ){
     console.log("ログインしていません");
     res.locals.username = "ゲスト";
     res.locals.isLoggedIn = false;
+    req.session.isLoggedIn = false
   }else{
     console.log("ログインしています");
-    res.locals.username = req.body.name;
-    res.locals.isLoggedIn = true;
+    if (!req.session.username) {
+      req.session.username = req.body.name;
+    }
+    req.session.isLoggedIn = true
   }
   next();
 })
 
 app.get('/', (req, res) => {
+  if (req.session.isLoggedIn) {
+    res.locals.username  =  req.session.username 
+    res.locals.isLoggedIn = true;
+  }
   res.render('top.ejs');
 });
 
@@ -66,8 +71,10 @@ app.get("/login", (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-    res.locals.username = req.body.name;
-    res.locals.userId = req.body.id;
+
+
+    // res.locals.username = req.body.name;
+    // res.locals.userId = req.body.id;
     res.redirect("/");
 });
 
