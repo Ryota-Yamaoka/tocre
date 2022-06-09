@@ -17,7 +17,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon -e ejs,js,json start ./bin/www",
+    "start": "node app.js",
+    "start:dev": "nodemon -e ejs,js,json start ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
