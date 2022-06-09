@@ -19,6 +19,12 @@ FIREBASE_MESSAGING_SENDER_ID=xxx
 FIREBASE_APP_ID=xxx
 ```
 
+3. node_modules のインストール
+
+```
+npm i
+```
+
 # Run
 
 ```
