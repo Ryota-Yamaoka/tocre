@@ -1,15 +1,11 @@
 // ターミナルで node app.js と打つと、 localhost:3000 で動く。
-// 9~49行目のfirebase関係のコードのコメントアウトを元に戻したらエラーが出て動かなくなる。
-
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
 const app = express();
-const session = require('express-session');
-require('dotenv').config();
-const bodyParser = require('body-parser');
+const session = require("express-session");
+const bodyParser = require("body-parser");
 
-const  { initializeApp } = require('firebase/app');
-const { getFirestore, collection, getDocs } = require('firebase/firestore/lite');
-
+const { initializeApp } = require("firebase/app");
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -22,44 +18,31 @@ const firebaseConfig = {
 
 const firebaseapp = initializeApp(firebaseConfig);
 
-app.use(express.static('public'));
-app.use(express.urlencoded({extended: false}));
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(
   session({
-    secret: 'my_secret_key',
-    // resave: false,
-    // saveUninitialized: false,
+    secret: "my_secret_key",
+    resave: false,
+    saveUninitialized: false,
   })
-)
+);
 
-// 元々ここでmysqlを用いた認証機能を作ろうとしていた。
-// このusernameを用いたユーザーの判別はtop.ejsで使おうとしている。このコードを少し書き換えてfirebaseで使えるようにしたい。
 app.use((req, res, next) => {
-  console.log(">>>>>>>>>>>>>>>>>>>>>>",req.session.username);
-  
-  if(!req.session.username && !req.body.name ){
-    console.log("ログインしていません");
+  if (req.session.isLoggedIn) {
+    res.locals.username = req.session.username;
+    res.locals.isLoggedIn = true;
+  } else {
     res.locals.username = "ゲスト";
     res.locals.isLoggedIn = false;
-    req.session.isLoggedIn = false
-  }else{
-    console.log("ログインしています");
-    if (!req.session.username) {
-      req.session.username = req.body.name;
-    }
-    req.session.isLoggedIn = true
   }
   next();
-})
+});
 
-app.get('/', (req, res) => {
-  if (req.session.isLoggedIn) {
-    res.locals.username  =  req.session.username 
-    res.locals.isLoggedIn = true;
-  }
-  res.render('top.ejs');
+app.get("/", (req, res) => {
+  res.render("top.ejs");
 });
 
 app.get("/create-select", (req, res) => {
@@ -67,21 +50,26 @@ app.get("/create-select", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
+  res.locals.apiKey = firebaseConfig.apiKey;
+  res.locals.authDomain = firebaseConfig.authDomain;
+  res.locals.projectId = firebaseConfig.projectId;
+  res.locals.storageBucket = firebaseConfig.storageBucket;
+  res.locals.messagingSenderId = firebaseConfig.messagingSenderId;
+  res.locals.appId = firebaseConfig.appId;
+  res.locals.measurementId = firebaseConfig.measurementId;
   res.render("login 3.ejs");
 });
 
-app.post('/login', (req, res) => {
-
-
-    // res.locals.username = req.body.name;
-    // res.locals.userId = req.body.id;
-    res.redirect("/");
+app.post("/login", async (req, res) => {
+  req.session.username = req.body.name;
+  req.session.isLoggedIn = true;
+  res.redirect("/");
 });
 
 app.get("/logout", (req, res) => {
   req.session.destroy((error) => {
     res.redirect("/");
-  })
+  });
 });
 
 app.get("/painting-know", (req, res) => {

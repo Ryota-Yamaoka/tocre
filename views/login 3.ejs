@@ -1,8 +1,6 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <script defer src="/__/firebase/5.3.1/firebase-app.js"></script>
-    <script defer src="/__/firebase/5.3.1/firebase-auth.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
     <link
       type="text/css"
@@ -10,6 +8,8 @@
       href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css"
     />
     <script defer src="/__/firebase/init.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
 
   <body>
@@ -20,26 +20,22 @@
 
     <!-- 以下のコードで login 3.ejs ファイルの中だけで新規登録・ログインをすることはできる。 -->
     <!-- これを app.js ファイルとも連携して、全てのページでユーザーごとに処理をわけられるようにしたい。 -->
-    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyAxetUkclvXWGL9ZvYKoGfnxWbtAmYcHg0",
-        authDomain: "t0cre8.firebaseapp.com",
-        databaseURL: "https://t0cre8.firebaseio.com",
-        storageBucket: "t0cre8.appspot.com",
-        messagingSenderId: "1027348099985",
+      const config = {
+        apiKey: "<%= locals.apiKey %>",
+        authDomain: "<%= locals.authDomain %>",
+        storageBucket: "<%= locals.storageBucket %>",
+        projectId: "<%= locals.projectId %>",
+        messagingSenderId: "<%= locals.messagingSenderId %>",
       };
       firebase.initializeApp(config);
     </script>
 
     <script type="text/javascript">
-      var ui = new firebaseui.auth.AuthUI(firebase.auth());
-
-      var uiConfig = {
+      const ui = new firebaseui.auth.AuthUI(firebase.auth());
+      const uiConfig = {
         callbacks: {
-          signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+          signInSuccessWithAuthResult: (authResult, redirectUrl) => {
             axios.post("/login", {
               email: authResult.user.email,
               name: authResult.user.displayName,
