@@ -36,14 +36,20 @@
       const uiConfig = {
         callbacks: {
           signInSuccessWithAuthResult: (authResult, redirectUrl) => {
-            axios.post("/login", {
-              email: authResult.user.email,
-              name: authResult.user.displayName,
-              id: authResult.user.uid,
-            });
-            return true;
+            axios
+              .post("/login", {
+                email: authResult.user.email,
+                name: authResult.user.displayName,
+                id: authResult.user.uid,
+              })
+              .then(() => {
+                window.location.href = "/";
+              })
+              .catch((error) => {
+                console.log(error);
+              });
           },
-          uiShown: function () {
+          uiShown: () => {
             document.getElementById("loader").style.display = "none";
           },
         },
