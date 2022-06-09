@@ -5,13 +5,13 @@ const app = express();
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyAxetUkclvXWGL9ZvYKoGfnxWbtAmYcHg0",
+  authDomain: "t0cre8.firebaseapp.com",
+  projectId: "t0cre8",
+  storageBucket: "t0cre8.appspot.com",
+  messagingSenderId: "1027348099985",
+  appId: "1:1027348099985:web:9e5a0eda2c76776e89a030",
+  measurementId: "G-LCWJQD8GEF",
 };
 
 app.use(express.static("public"));
@@ -70,6 +70,11 @@ app.get("/logout", (req, res) => {
 
 app.get("/painting-know", (req, res) => {
   res.render("painting-know.ejs");
+  // if(req.session.isLoggedIn === true){
+  //   ...
+  // }else{
+  //   ...
+  // }
 });
 
 app.get("/painting-comment", (req, res) => {
