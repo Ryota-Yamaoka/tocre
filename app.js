@@ -1,83 +1,44 @@
 // ターミナルで node app.js と打つと、 localhost:3000 で動く。
-// 9~49行目のfirebase関係のコードのコメントアウトを元に戻したらエラーが出て動かなくなる。
-
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
 const app = express();
-const session = require('express-session');
-const bcrypt = require('bcrypt');
-
-const  { initializeApp } = require('firebase/app');
-const { getFirestore, collection, getDocs } = require('firebase/firestore/lite');
-
-// Follow this pattern to import other Firebase services
-// import { } from 'firebase/<service>';
-
-// TODO: Replace the following with your app's Firebase project configuration
+const session = require("express-session");
+const bodyParser = require("body-parser");
 const firebaseConfig = {
-        apiKey: x,
-        authDomain: "t0cre8.firebaseapp.com",
-        databaseURL: "https://t0cre8.firebaseio.com",
-        storageBucket: "t0cre8.appspot.com",
-        messagingSenderId: "1027348099985",
-        projectId: "t0cre8"
+  apiKey: "AIzaSyAxetUkclvXWGL9ZvYKoGfnxWbtAmYcHg0",
+  authDomain: "t0cre8.firebaseapp.com",
+  projectId: "t0cre8",
+  storageBucket: "t0cre8.appspot.com",
+  messagingSenderId: "1027348099985",
+  appId: "1:1027348099985:web:9e5a0eda2c76776e89a030",
+  measurementId: "G-LCWJQD8GEF",
 };
 
-const firebaseapp = initializeApp(firebaseConfig);
-const db = getFirestore(firebaseapp);
-
-// Get a list of cities from your database
-async function getCities(db) {
-  const citiesCol = collection(db, 'cities');
-  const citySnapshot = await getDocs(citiesCol);
-  const cityList = citySnapshot.docs.map(doc => doc.data());
-  return cityList;
-}
-
-const  { getAuth } =  require("firebase/auth");
-
-const auth = getAuth();
-const user = auth.currentUser;
-if (user !== null) {
-  // The user object has basic properties such as display name, email, etc.
-  const displayName = user.displayName;
-  const email = user.email;
-  const photoURL = user.photoURL;
-  const emailVerified = user.emailVerified;
-
-  // The user's ID, unique to the Firebase project. Do NOT use
-  // this value to authenticate with your backend server, if
-  // you have one. Use User.getToken() instead.
-  const uid = user.uid;
-}
-
-app.use(express.static('public'));
-app.use(express.urlencoded({extended: false}));
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(
   session({
-    secret: 'my_secret_key',
+    secret: "my_secret_key",
     resave: false,
     saveUninitialized: false,
   })
-)
+);
 
-// 元々ここでmysqlを用いた認証機能を作ろうとしていた。
-// このusernameを用いたユーザーの判別はtop.ejsで使おうとしている。このコードを少し書き換えてfirebaseで使えるようにしたい。
 app.use((req, res, next) => {
-  if(req.session.userId === undefined){
-    console.log("ログインしていません");
-    res.locals.username = "ゲスト";
-    res.locals.isLoggedIn = false;
-  }else{
-    console.log("ログインしています");
+  if (req.session.isLoggedIn) {
     res.locals.username = req.session.username;
     res.locals.isLoggedIn = true;
+  } else {
+    res.locals.username = "ゲスト";
+    res.locals.isLoggedIn = false;
   }
   next();
-})
+});
 
-app.get('/', (req, res) => {
-  res.render('top.ejs');
+app.get("/", (req, res) => {
+  res.render("top.ejs");
 });
 
 app.get("/create-select", (req, res) => {
@@ -85,17 +46,26 @@ app.get("/create-select", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
+  res.locals.apiKey = firebaseConfig.apiKey;
+  res.locals.authDomain = firebaseConfig.authDomain;
+  res.locals.projectId = firebaseConfig.projectId;
+  res.locals.storageBucket = firebaseConfig.storageBucket;
+  res.locals.messagingSenderId = firebaseConfig.messagingSenderId;
+  res.locals.appId = firebaseConfig.appId;
+  res.locals.measurementId = firebaseConfig.measurementId;
   res.render("login 3.ejs");
 });
 
-app.post('/login', (req, res) => {
-
+app.post("/login", async (req, res) => {
+  req.session.username = req.body.name;
+  req.session.isLoggedIn = true;
+  res.sendStatus(200);
 });
 
 app.get("/logout", (req, res) => {
   req.session.destroy((error) => {
     res.redirect("/");
-  })
+  });
 });
 
 app.get("/painting-know", (req, res) => {

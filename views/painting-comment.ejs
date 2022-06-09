@@ -21,7 +21,7 @@
             <div class="know-contents">
               <br>
               <div class="box17" id="your_container">
-                <div id="mynetwork"></div>
+                <svg height=585 width=1400></svg>
               </div>
             </div>
             <canvas id="myDoughnutChart" width="40" height="10">
@@ -79,6 +79,126 @@
           }
         }
       });
+    </script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script>
+      //nodeのデータを作成
+      var range =110;
+      var nodes = d3.range(0, range).map(function(d,i){ return {id:i,label: "n"+d ,r:15}});
+      console.log(nodes)
+
+      //-------★追加-------
+      //linkのデータを作成//
+      //３段階の構造にする1を中心、2~10を二段階、11~110までを三段階
+      var links = d3.range(1,range).map(function(d,i){ 
+          if(d <= 10){
+              return {id:i,label:"l"+d,source:0,target:d}
+          }else{
+              return {id:i,label:"l"+d,source:(d-d%10)/10,target:d}
+          }
+      })
+      //-------★追加ここまで-------
+
+      //メイン！D3.jsのforcesimulation
+      //svg領域の大きさを定義する
+      var svgheight = 960,
+            svgwidth = 1000;
+      var simulation = d3.forceSimulation()
+                  .force("collide",d3.forceCollide().radius(function(d){return d.r;}).iterations(16) )
+                  //-------★追加-------
+                  //linkの力学設定
+                  .force("link", d3.forceLink().strength(1.0).distance(function(d){
+                      if(d.id<10){
+                          return 200;
+                      }else{
+                          return 20;
+                      }
+                  //-------★追加ここまで-------
+                  }))          
+                  .force("charge", d3.forceManyBody().strength(-100))
+                  .force("center", d3.forceCenter(svgwidth / 2, svgheight / 2))
+                  .force("y", d3.forceY())
+                  .force("x", d3.forceX())
+          ;
+          
+      //-------★追加-------
+      //linkをsvg領域に描画する
+      var link = d3.select("svg").append("g")
+          .attr("class", "links")
+          .selectAll("line")
+          .data(links)
+          .enter()
+          .append("line")
+          .attr("stroke", "black")
+          ;
+      //-------★追加ここまで-------
+          
+      //nodeの色を定義
+      var color = d3.scaleOrdinal(["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f", "#e5c494", "#b3b3b3","#3366ff","#99ff66"]);
+      //nodeをsvg領域に描画する
+      var node = d3.select("svg").append("g")
+                .attr("class", "nodes")
+                .selectAll("circle")
+                .data(nodes)
+                .enter()
+                .append("circle")
+                .attr("class","node")
+                .attr("r", function(d){  return d.r ;})
+                .attr("fill",function(d){ 
+                      if(d.id==0){
+                          return "red";
+                      }else{
+                          if(d.id<=10){
+                              return color(d.id);
+                          }else{
+                              return color((d.id-d.id%10)/10);
+                          }
+                      }
+                  })
+                .call(d3.drag()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended)
+                )
+                ; 
+                
+      //nodeをマウスドラッグで動かすための関数
+      function dragstarted(d) {
+            if (!d3.event.active) simulation.alphaTarget(.03).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+      }
+      function dragged(d) {
+          d.fx = d3.event.x;
+          d.fy = d3.event.y;
+      }
+      function dragended(d) {
+          if (!d3.event.active) simulation.alphaTarget(.03);
+          d.fx = null;
+          d.fy = null;
+      }
+
+      //動作開始！
+      simulation
+          .nodes(nodes)
+          .on("tick", ticked);
+      //-------★追加-------
+      simulation.force("link")
+          .links(links);
+      //-------★追加ここまで-------
+
+      function ticked() {
+          node
+              .attr("cx", function(d) { return d.x; })
+              .attr("cy", function(d) { return d.y; });
+      //-------★追加-------
+          link
+              .attr("x1", function(d) { return d.source.x; })
+              .attr("y1", function(d) { return d.source.y; })
+              .attr("x2", function(d) { return d.target.x; })
+              .attr("y2", function(d) { return d.target.y; });
+      //-------★追加ここまで-------
+      }  
     </script>
     <script type="text/javascript">
     function draw() {

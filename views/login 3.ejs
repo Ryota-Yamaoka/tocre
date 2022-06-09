@@ -1,56 +1,69 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <script defer src="/__/firebase/5.3.1/firebase-app.js"></script>
-    <script defer src="/__/firebase/5.3.1/firebase-auth.js"></script>
+    <meta charset="utf-8" />
     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css"
+    />
     <script defer src="/__/firebase/init.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
 
   <body>
+    <div id="auth"></div>
     <p>ログインしてください</p>
     <div id="firebaseui-auth-container"></div>
     <div id="loader">Loading...</div>
 
-<!-- 以下のコードで login 3.ejs ファイルの中だけで新規登録・ログインをすることはできる。 -->
-<!-- これを app.js ファイルとも連携して、全てのページでユーザーごとに処理をわけられるようにしたい。 -->
-
-    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+    <!-- 以下のコードで login 3.ejs ファイルの中だけで新規登録・ログインをすることはできる。 -->
+    <!-- これを app.js ファイルとも連携して、全てのページでユーザーごとに処理をわけられるようにしたい。 -->
     <script>
-      
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyAxetUkclvXWGL9ZvYKoGfnxWbtAmYcHg0",
-        authDomain: "t0cre8.firebaseapp.com",
-        databaseURL: "https://t0cre8.firebaseio.com",
-        storageBucket: "t0cre8.appspot.com",
-        messagingSenderId: "1027348099985",
+      const config = {
+        apiKey: "<%= locals.apiKey %>",
+        authDomain: "<%= locals.authDomain %>",
+        storageBucket: "<%= locals.storageBucket %>",
+        projectId: "<%= locals.projectId %>",
+        messagingSenderId: "<%= locals.messagingSenderId %>",
       };
       firebase.initializeApp(config);
     </script>
 
     <script type="text/javascript">
-            var ui = new firebaseui.auth.AuthUI(firebase.auth());
-
-            var uiConfig = {
-              callbacks: {
-                signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-                  return true;
-                },
-                uiShown: function() {
-                  document.getElementById('loader').style.display = 'none';
-                }
-              },
-              signInFlow: 'popup',
-              signInSuccessUrl: '/',
-              signInOptions: [
-                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                firebase.auth.EmailAuthProvider.PROVIDER_ID,
-              ],
-            };
-            ui.start('#firebaseui-auth-container', uiConfig);
+      const ui = new firebaseui.auth.AuthUI(firebase.auth());
+      const uiConfig = {
+        callbacks: {
+          signInSuccessWithAuthResult: (authResult, redirectUrl) => {
+            alert(Object.keys(authResult.user));
+            axios
+              .post("/login", {
+                name: authResult.user.displayName,
+                // 必要に応じて追加する→ login のPOSTメソッドも追加修正する
+                // email: authResult.user.email,
+                // id: authResult.user.uid, // firebsae の uid
+                // photoURL: authResult.user.photoURL, // icon のURL
+              })
+              .then(() => {
+                window.location.href = "/";
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          },
+          uiShown: () => {
+            document.getElementById("loader").style.display = "none";
+          },
+        },
+        signInFlow: "popup",
+        signInSuccessUrl: "/",
+        signInOptions: [
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        ],
+      };
+      ui.start("#firebaseui-auth-container", uiConfig);
     </script>
   </body>
 </html>
