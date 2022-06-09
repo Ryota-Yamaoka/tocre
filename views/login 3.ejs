@@ -36,7 +36,6 @@
       const uiConfig = {
         callbacks: {
           signInSuccessWithAuthResult: (authResult, redirectUrl) => {
-            alert(Object.keys(authResult.user));
             axios
               .post("/login", {
                 name: authResult.user.displayName,
