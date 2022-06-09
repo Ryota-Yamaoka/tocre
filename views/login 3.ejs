@@ -36,11 +36,14 @@
       const uiConfig = {
         callbacks: {
           signInSuccessWithAuthResult: (authResult, redirectUrl) => {
+            alert(Object.keys(authResult.user));
             axios
               .post("/login", {
-                email: authResult.user.email,
                 name: authResult.user.displayName,
-                id: authResult.user.uid,
+                // 必要に応じて追加する→ login のPOSTメソッドも追加修正する
+                // email: authResult.user.email,
+                // id: authResult.user.uid, // firebsae の uid
+                // photoURL: authResult.user.photoURL, // icon のURL
               })
               .then(() => {
                 window.location.href = "/";

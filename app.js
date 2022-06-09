@@ -4,8 +4,6 @@ const express = require("express");
 const app = express();
 const session = require("express-session");
 const bodyParser = require("body-parser");
-
-const { initializeApp } = require("firebase/app");
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -15,8 +13,6 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_APP_ID,
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
-
-const firebaseapp = initializeApp(firebaseConfig);
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
@@ -63,7 +59,7 @@ app.get("/login", (req, res) => {
 app.post("/login", async (req, res) => {
   req.session.username = req.body.name;
   req.session.isLoggedIn = true;
-  res.redirect("/");
+  res.sendStatus(200);
 });
 
 app.get("/logout", (req, res) => {
