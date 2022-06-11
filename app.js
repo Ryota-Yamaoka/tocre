@@ -249,4 +249,8 @@ app.get("/rossia-know", (req, res) => {
   res.render("rossia-know.ejs");
 });
 
+app.get("/upload-works", (req, res) => {
+  res.render("upload-works.ejs");
+});
+
 app.listen(3000);

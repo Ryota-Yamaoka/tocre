@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css"
+  />
+  <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+ </head>
+ <body>
+  <input type="file" id="file" />
+  <button id="upload" type="button">アップロード</button>
+  <script>
+    const config = {
+      apiKey: "<%= locals.apiKey %>",
+      authDomain: "<%= locals.authDomain %>",
+      storageBucket: "<%= locals.storageBucket %>",
+      projectId: "<%= locals.projectId %>",
+      messagingSenderId: "<%= locals.messagingSenderId %>",
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script>
+  
+    document.getElementById('upload').addEventListener('click', function() {
+      files = document.getElementById('file').files;
+      image = files[0];
+  
+      if(files[0].type.indexOf('image') >= 0) {
+        ref = firebase.storage().ref().child(image.name);
+        ref.put(image).then(function(snapshot) {
+          ref.getDownloadURL().then(function(url){
+            alert('画像をアップロードしました！');
+            document.getElementById('image').src = url;
+          });
+        });
+      } else {
+        alert('アップロードできるのはjpeg、png、gifの画像だけです');
+      }
+    });
+  
+    document.getElementById('delete').addEventListener('click', function() {
+      ref.delete().then(function(){
+        alert('画像を削除しました！');
+      });
+    });
+  
+  </script>
+ </body>
+</html>
