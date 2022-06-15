@@ -11,6 +11,7 @@
     "mysql2": "^2.3.3",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
+    "pg-promise": "^10.11.1",
     "server.js": "^1.0.0"
   },
   "name": "list-app-local",
