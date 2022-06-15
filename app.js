@@ -5,13 +5,13 @@ const app = express();
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const firebaseConfig = {
-  apiKey: "AIzaSyAxetUkclvXWGL9ZvYKoGfnxWbtAmYcHg0",
-  authDomain: "t0cre8.firebaseapp.com",
-  projectId: "t0cre8",
-  storageBucket: "t0cre8.appspot.com",
-  messagingSenderId: "1027348099985",
-  appId: "1:1027348099985:web:9e5a0eda2c76776e89a030",
-  measurementId: "G-LCWJQD8GEF",
+  apiKey: "x",
+  authDomain: "x",
+  projectId: "x",
+  storageBucket: "x",
+  messagingSenderId: "x",
+  appId: "x",
+  measurementId: "x",
 };
 const pgp = require("pg-promise")(/* options */);
 const connection = {
