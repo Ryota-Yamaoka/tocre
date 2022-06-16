@@ -1,6 +1,7 @@
 // ターミナルで node app.js と打つと、 localhost:3000 で動く。
 require("dotenv").config();
 const express = require("express");
+const db = require("./db");
 const app = express();
 const session = require("express-session");
 const bodyParser = require("body-parser");
@@ -13,25 +14,6 @@ const firebaseConfig = {
   appId: "x",
   measurementId: "x",
 };
-const pgp = require("pg-promise")(/* options */);
-const connection = {
-  host: "localhost",
-  port: 5432,
-  database: "tocre",
-  user: "postgres",
-  password: "",
-};
-const db = pgp(connection);
-
-app.get('/users/:userId', (req, res) => {
-  db.one("SELECT * FROM users WHERE id=$1", [req.params.userId])
-  .then((data) => {
-    res.send(data);
-  })
-  .catch((error) => {
-    console.log("ERROR:", error);
-  });
-})
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
@@ -58,6 +40,16 @@ app.use((req, res, next) => {
 
 app.get("/", (req, res) => {
   res.render("top.ejs");
+});
+
+app.get("/users/:userId", (req, res) => {
+  db.one("SELECT * FROM users WHERE id=$1", [req.params.userId])
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((error) => {
+      console.log("ERROR:", error);
+    });
 });
 
 app.get("/create-select", (req, res) => {
