@@ -8,4 +8,13 @@ const connection = {
 };
 const db = pgp(connection);
 
-module.exports = db;
+// DBにデータがないことを判定する関数を定義する
+const queryResultCode = pgp.errors.queryResultErrorCode;
+const isErrNoData = (error) => {
+  return (
+    error instanceof pgp.errors.QueryResultError &&
+    error.code === queryResultCode.noData
+  );
+};
+
+module.exports = { db, isErrNoData };

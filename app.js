@@ -1,18 +1,18 @@
 // ターミナルで node app.js と打つと、 localhost:3000 で動く。
 require("dotenv").config();
 const express = require("express");
-const db = require("./db");
+const { db, isErrNoData } = require("./db");
 const app = express();
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const firebaseConfig = {
-  apiKey: "x",
-  authDomain: "x",
-  projectId: "x",
-  storageBucket: "x",
-  messagingSenderId: "x",
-  appId: "x",
-  measurementId: "x",
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
 
 app.use(express.static("public"));
@@ -68,9 +68,42 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  req.session.username = req.body.name;
+  const firebaseUUiD = req.body.id;
   req.session.isLoggedIn = true;
-  res.sendStatus(200);
+  // ======== write here your code =============
+  db.one("①fierbase_uuidからユーザーを取得するクエリ l46 のようなかんじ。")
+    .then((data) => {
+      // ======== write here your code =============
+      // req seesion に対応するdata のフィールドを入れる
+      // e.g) req.session.username = data.name;
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      // データが無かった場合
+      if (isErrNoData(error)) {
+        // ======== write here your code =============
+        db.one("②usersテーブルにuserデータを挿入(INSERT)するクエリ", [
+          req.body.id,
+          req.body.name,
+        ]) // req.body.id とreq.body.namen など必要なデータを挿入する
+          .then((data) => {
+            // ======== write here your code =============
+            // req seesion に対応するdata のフィールドを入れる
+            // e.g) req.session.username = data.name;
+            res.sendStatus(200);
+            return;
+          })
+          .catch((error) => {
+            console.log("ERROR:", error);
+            res.sendStatus(500);
+            return;
+          });
+      } else {
+        console.log("ERROR:", error);
+        res.sendStatus(500);
+        return;
+      }
+    });
 });
 
 app.get("/logout", (req, res) => {
