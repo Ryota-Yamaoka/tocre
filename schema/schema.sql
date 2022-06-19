@@ -11,7 +11,6 @@ CREATE TABLE works (
   id SERIAL NOT NULL,
   user_id SERIAL REFERENCES users (id) NOT NULL,
   url VARCHAR(2048) NOT NULL,
-
 --  必要なカラムを追加してみてください。
 --  文字列の場合の型はVARCHAR(255 or 512 or 1024 or ..) になります。
 --  中の数字は文字列の想定の長さによって使い分けます。日本語１文字がVARCHAR2ぐらいのイメージです
