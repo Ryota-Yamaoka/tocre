@@ -38,11 +38,13 @@
           signInSuccessWithAuthResult: (authResult, redirectUrl) => {
             axios
               .post("/login", {
+                // 以下のデータがreq.body.XX に代入されて/login にPOSTされる
+                id: authResult.user.uid, // firebsae の uid
                 name: authResult.user.displayName,
+                // ======== write here your code =============
                 // 必要に応じて追加する→ login のPOSTメソッドも追加修正する
-                // email: authResult.user.email,
-                // id: authResult.user.uid, // firebsae の uid
-                // photoURL: authResult.user.photoURL, // icon のURL
+                email: authResult.user.email,
+                photoURL: authResult.user.photoURL, // icon のURL
               })
               .then(() => {
                 window.location.href = "/";
