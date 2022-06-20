@@ -128,8 +128,12 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/upload", (req, res) => {
-  if (!req.session.isLoggedIn) {
-  }
+  // ======== write here your code =============
+  // ログインしていなかったらloginにとばすコードを書きましょう
+  // if (!req.session.isLoggedIn) {
+  //            .....
+  // }
+  // ===========================================
   res.render("upload.ejs");
 });
 
@@ -145,11 +149,13 @@ app.post("/upload", multer().single("file"), (req, res) => {
 
   // firebase storage にupload する関数
   uploadBytes(storageRef, fileBuf)
+    // then は成功したときに実行される条件文
     .then((result) => {
       // firebase のURLを取得する関数
       getDownloadURL(storageRef).then((url) => {
         // ======== write here your code =============
-        // db.one ~ でworks テーブルにインサートするコードを書く。
+        // db.one ~ でworks テーブルにインサートするコードを書きましょう。
+        // 基本的にl.101 にかかれているusersのインサートと同じです。
         // ユーザーIDはreq.session.id とする
         // ひとまずurl とuserid 以外のexplanationとかはnullにならないように適当に埋めておく
         // =============================================
@@ -157,6 +163,7 @@ app.post("/upload", multer().single("file"), (req, res) => {
       });
     })
     .catch((err) => {
+      // catch(err) はエラーしたときに実行される条件文
       res.send(err);
     });
 });
