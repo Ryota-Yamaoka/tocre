@@ -3,18 +3,30 @@ require("dotenv").config();
 const express = require("express");
 const { db, isErrNoData } = require("./db");
 const app = express();
+const multer = require("multer");
 const session = require("express-session");
 const bodyParser = require("body-parser");
+
+// 必要なモジュールをインポートする
+const {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} = require("firebase/storage");
+const { initializeApp } = require("firebase/app");
+
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.FIREBASE_DATABASE_URL, 
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
   projectId: process.env.FIREBASE_PROJECT_ID,
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
+initializeApp(firebaseConfig);
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
@@ -70,7 +82,7 @@ app.get("/login", (req, res) => {
 
 app.post("/login", async (req, res) => {
   const firebaseUUiD = req.body.id;
-  const username = req.body.name || req.body.email
+  const username = req.body.name || req.body.email;
 
   req.session.isLoggedIn = true;
   // ======== write here your code =============
@@ -94,6 +106,8 @@ app.post("/login", async (req, res) => {
             // ======== write here your code =============
             // req seesion に対応するdata のフィールドを入れる
             // e.g) req.session.username = data.name;
+
+            // 1/ req.session にid を追加しておく。他のルーターでもreq,session.id にアクセスできるようにする
             req.session.username = data.name;
             res.sendStatus(200);
             return;
@@ -109,6 +123,41 @@ app.post("/login", async (req, res) => {
         return;
       }
     });
+});
+
+app.get("/upload", (req, res) => {
+  res.render("upload.ejs");
+});
+
+app.post("/upload", multer().single("file"), (req, res) => {
+  const fileBuf = req.file.buffer;
+  // .env 内のUPLOAD_BUCKET=XXXに記載したバケットにアップロードする
+  // req.file.originalname はアップロードされたファイルのファイル名
+  const fileRef = `${process.env.UPLOAD_BUCKET}/${req.file.originalname}`;
+
+  // firebase storage の情報を取得
+  const storage = getStorage();
+  const storageRef = ref(storage, fileRef);
+
+  // firebase storage にupload する関数
+  uploadBytes(storageRef, fileBuf)
+    .then((result) => {
+      // firebase のURLを取得する関数
+      getDownloadURL(storageRef).then((url) => {
+        // ======== write here your code =============
+        // db.one ~ でworks テーブルにインサートするコードを書く。
+        // ユーザーIDはreq.session.id とする
+        // ひとまずurl とuserid 以外のexplanationとかはnullにならないように適当に埋めておく
+        // =============================================
+        res.redirect("/success"); // 成功したらsuccessにリダイレクト
+      });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+app.get("/success", (req, res) => {
+  res.render("success.ejs");
 });
 
 app.get("/logout", (req, res) => {
