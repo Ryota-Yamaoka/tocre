@@ -107,7 +107,9 @@ app.post("/login", async (req, res) => {
             // req seesion に対応するdata のフィールドを入れる
             // e.g) req.session.username = data.name;
 
-            // 1/ req.session にid を追加しておく。他のルーターでもreq,session.id にアクセスできるようにする
+            // ======== write here your code =============
+            // 1/ req.session.id  にdata.id を追加しておく。works テーブルにデータ挿入するときにreq,session.id にアクセスできるようにする
+            // ============================================
             req.session.username = data.name;
             res.sendStatus(200);
             return;
@@ -126,6 +128,8 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/upload", (req, res) => {
+  if (!req.session.isLoggedIn) {
+  }
   res.render("upload.ejs");
 });
 
