@@ -5,6 +5,7 @@ const { db, isErrNoData } = require("./db");
 const app = express();
 const session = require("express-session");
 const bodyParser = require("body-parser");
+const multer = require('multer');
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -117,6 +118,10 @@ app.get("/logout", (req, res) => {
   });
 });
 
+app.post("/upload", multer().single("file"), (req, res) => {
+  // 
+});
+
 app.get("/painting-know", (req, res) => {
   res.render("painting-know.ejs");
   // if(req.session.isLoggedIn === true){
@@ -140,6 +145,10 @@ app.get("/prof", (req, res) => {
 
 app.get("/purchase", (req, res) => {
   res.render("purchase.ejs");
+});
+
+app.get("/upload", (req, res) => {
+  res.render("upload.ejs");
 });
 
 app.get("/contribute", (req, res) => {
