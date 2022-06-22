@@ -51,7 +51,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.render("top.ejs");
+  return res.render("top.ejs");
 });
 
 app.get("/users/:userId", (req, res) => {
@@ -65,7 +65,7 @@ app.get("/users/:userId", (req, res) => {
 });
 
 app.get("/create-select", (req, res) => {
-  res.render("create-select.ejs");
+  return res.render("create-select.ejs");
 });
 
 app.get("/login", (req, res) => {
@@ -76,7 +76,7 @@ app.get("/login", (req, res) => {
   res.locals.messagingSenderId = firebaseConfig.messagingSenderId;
   res.locals.appId = firebaseConfig.appId;
   res.locals.measurementId = firebaseConfig.measurementId;
-  res.render("login 3.ejs");
+  return res.render("login 3.ejs");
 });
 
 app.post("/login", async (req, res) => {
@@ -129,10 +129,10 @@ app.get("/upload", (req, res) => {
   // ======== write here your code =============
   // ログインしていなかったらloginにとばすコードを書きましょう
   if (!req.session.isLoggedIn) {
-    res.redirect("/login");
+    return res.redirect("/login");
   }
   // ===========================================
-  res.render("upload.ejs");
+  return res.render("upload.ejs");
 });
 
 app.post("/upload", multer().single("file"), (req, res) => {
@@ -158,13 +158,13 @@ app.post("/upload", multer().single("file"), (req, res) => {
         // ひとまずurl とuserid 以外のexplanationとかはnullにならないように適当に埋めておく
         // =============================================
         db.one("INSERT INTO works (user_id, url, explanation, title, inspiration) VALUES ($1, $2, $3, $4, $5)", [
-          req.session.id,
+          req.session.user_id,
           req.session.url, 
-          req.session.explanation, 
-          req.session.title, 
-          req.session.inspiration, 
+          explanation_a, 
+          title_a, 
+          inspiration_a, 
         ])
-        res.redirect("/success"); // 成功したらsuccessにリダイレクト
+        return res.redirect("/success"); // 成功したらsuccessにリダイレクト
       });
     })
     .catch((err) => {
@@ -173,17 +173,17 @@ app.post("/upload", multer().single("file"), (req, res) => {
     });
 });
 app.get("/success", (req, res) => {
-  res.render("success.ejs");
+  return res.render("success.ejs");
 });
 
 app.get("/logout", (req, res) => {
   req.session.destroy((error) => {
-    res.redirect("/");
+    return res.redirect("/");
   });
 });
 
 app.get("/painting-know", (req, res) => {
-  res.render("painting-know.ejs");
+  return res.render("painting-know.ejs");
   // if(req.session.isLoggedIn === true){
   //   ...
   // }else{
@@ -192,179 +192,179 @@ app.get("/painting-know", (req, res) => {
 });
 
 app.get("/painting-comment", (req, res) => {
-  res.render("painting-comment.ejs");
+  return res.render("painting-comment.ejs");
 });
 
 app.get("/music-comment", (req, res) => {
-  res.render("music-comment.ejs");
+  return res.render("music-comment.ejs");
 });
 
 app.get("/prof", (req, res) => {
-  res.render("prof.ejs");
+  return res.render("prof.ejs");
 });
 
 app.get("/purchase", (req, res) => {
-  res.render("purchase.ejs");
+  return res.render("purchase.ejs");
 });
 
 app.get("/contribute", (req, res) => {
-  res.render("contribute.ejs");
+  return res.render("contribute.ejs");
 });
 
 app.get("/purchase-finish", (req, res) => {
-  res.render("purchase-finish.ejs");
+  return res.render("purchase-finish.ejs");
 });
 
 app.get("/contribute-finish", (req, res) => {
-  res.render("contribute-finish.ejs");
+  return res.render("contribute-finish.ejs");
 });
 
 app.get("/human-know", (req, res) => {
-  res.render("human-know.ejs");
+  return res.render("human-know.ejs");
 });
 
 app.get("/rinri-know", (req, res) => {
-  res.render("rinri-know.ejs");
+  return res.render("rinri-know.ejs");
 });
 
 app.get("/japan-know", (req, res) => {
-  res.render("japan-know.ejs");
+  return res.render("japan-know.ejs");
 });
 
 app.get("/tech-know", (req, res) => {
-  res.render("tech-know.ejs");
+  return res.render("tech-know.ejs");
 });
 
 app.get("/school-know", (req, res) => {
-  res.render("school-know.ejs");
+  return res.render("school-know.ejs");
 });
 
 app.get("/book-know", (req, res) => {
-  res.render("book-know.ejs");
+  return res.render("book-know.ejs");
 });
 
 app.get("/movie-know", (req, res) => {
-  res.render("movie-know.ejs");
+  return res.render("movie-know.ejs");
 });
 
 app.get("/music-know", (req, res) => {
-  res.render("music-know.ejs");
+  return res.render("music-know.ejs");
 });
 
 app.get("/nature-know", (req, res) => {
-  res.render("nature-know.ejs");
+  return res.render("nature-know.ejs");
 });
 
 app.get("/policy-know", (req, res) => {
-  res.render("policy-know.ejs");
+  return res.render("policy-know.ejs");
 });
 
 app.get("/love-know", (req, res) => {
-  res.render("love-know.ejs");
+  return res.render("love-know.ejs");
 });
 
 app.get("/global-know", (req, res) => {
-  res.render("global-know.ejs");
+  return res.render("global-know.ejs");
 });
 
 app.get("/corona-know", (req, res) => {
-  res.render("corona-know.ejs");
+  return res.render("corona-know.ejs");
 });
 
 app.get("/sei-know", (req, res) => {
-  res.render("sei-know.ejs");
+  return res.render("sei-know.ejs");
 });
 
 app.get("/battle-know", (req, res) => {
-  res.render("battle-know.ejs");
+  return res.render("battle-know.ejs");
 });
 
 app.get("/event-know", (req, res) => {
-  res.render("event-know.ejs");
+  return res.render("event-know.ejs");
 });
 
 app.get("/now-know", (req, res) => {
-  res.render("now-know.ejs");
+  return res.render("now-know.ejs");
 });
 
 app.get("/seikatsu-know", (req, res) => {
-  res.render("seikatsu-know.ejs");
+  return res.render("seikatsu-know.ejs");
 });
 
 app.get("/walk-know", (req, res) => {
-  res.render("walk-know.ejs");
+  return res.render("walk-know.ejs");
 });
 
 app.get("/relation-know", (req, res) => {
-  res.render("relation-know.ejs");
+  return res.render("relation-know.ejs");
 });
 
 app.get("/sns-know", (req, res) => {
-  res.render("sns-know.ejs");
+  return res.render("sns-know.ejs");
 });
 
 app.get("/japanese-know", (req, res) => {
-  res.render("japanese-know.ejs");
+  return res.render("japanese-know.ejs");
 });
 
 app.get("/english-know", (req, res) => {
-  res.render("english-know.ejs");
+  return res.render("english-know.ejs");
 });
 
 app.get("/society-know", (req, res) => {
-  res.render("society-know.ejs");
+  return res.render("society-know.ejs");
 });
 
 app.get("/math-know", (req, res) => {
-  res.render("math-know.ejs");
+  return res.render("math-know.ejs");
 });
 
 app.get("/science-know", (req, res) => {
-  res.render("science-know.ejs");
+  return res.render("science-know.ejs");
 });
 
 app.get("/all-know", (req, res) => {
-  res.render("all-know.ejs");
+  return res.render("all-know.ejs");
 });
 
 app.get("/moral-know", (req, res) => {
-  res.render("moral-know.ejs");
+  return res.render("moral-know.ejs");
 });
 
 app.get("/info-know", (req, res) => {
-  res.render("info.ejs");
+  return res.render("info.ejs");
 });
 
 app.get("/helth-know", (req, res) => {
-  res.render("helth-know.ejs");
+  return res.render("helth-know.ejs");
 });
 
 app.get("/pe-know", (req, res) => {
-  res.render("pe-know.ejs");
+  return res.render("pe-know.ejs");
 });
 
 app.get("/merosu-know", (req, res) => {
-  res.render("merosu-know.ejs");
+  return res.render("merosu-know.ejs");
 });
 
 app.get("/sangetsuki-know", (req, res) => {
-  res.render("sangetsuki-know.ejs");
+  return res.render("sangetsuki-know.ejs");
 });
 
 app.get("/friend-know", (req, res) => {
-  res.render("friend-know.ejs");
+  return res.render("friend-know.ejs");
 });
 
 app.get("/ukuraina-know", (req, res) => {
-  res.render("ukuraina-know.ejs");
+  return res.render("ukuraina-know.ejs");
 });
 
 app.get("/rossia-know", (req, res) => {
-  res.render("rossia-know.ejs");
+  return res.render("rossia-know.ejs");
 });
 
 app.get("/upload-works", (req, res) => {
-  res.render("upload-works.ejs");
+  return res.render("upload-works.ejs");
 });
 
 app.listen(3000);
