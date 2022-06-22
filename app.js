@@ -1,4 +1,3 @@
-// ターミナルで node app.js と打つと、 localhost:3000 で動く。
 require("dotenv").config();
 const express = require("express");
 const { db, isErrNoData } = require("./db");
@@ -106,10 +105,9 @@ app.post("/login", async (req, res) => {
             // ======== write here your code =============
             // req seesion に対応するdata のフィールドを入れる
             // e.g) req.session.username = data.name;
-
-            // ======== write here your code =============
             // 1/ req.session.id  にdata.id を追加しておく。works テーブルにデータ挿入するときにreq,session.id にアクセスできるようにする
             // ============================================
+            req.session.id = data.id;
             req.session.username = data.name;
             res.sendStatus(200);
             return;
@@ -130,9 +128,9 @@ app.post("/login", async (req, res) => {
 app.get("/upload", (req, res) => {
   // ======== write here your code =============
   // ログインしていなかったらloginにとばすコードを書きましょう
-  // if (!req.session.isLoggedIn) {
-  //            .....
-  // }
+  if (!req.session.isLoggedIn) {
+    res.redirect("/login");
+  }
   // ===========================================
   res.render("upload.ejs");
 });
@@ -159,6 +157,13 @@ app.post("/upload", multer().single("file"), (req, res) => {
         // ユーザーIDはreq.session.id とする
         // ひとまずurl とuserid 以外のexplanationとかはnullにならないように適当に埋めておく
         // =============================================
+        db.one("INSERT INTO works (user_id, url, explanation, title, inspiration) VALUES ($1, $2, $3, $4, $5)", [
+          req.session.id,
+          req.session.url, 
+          req.session.explanation, 
+          req.session.title, 
+          req.session.inspiration, 
+        ])
         res.redirect("/success"); // 成功したらsuccessにリダイレクト
       });
     })
