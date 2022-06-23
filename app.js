@@ -107,7 +107,7 @@ app.post("/login", async (req, res) => {
             // e.g) req.session.username = data.name;
             // 1/ req.session.id  にdata.id を追加しておく。works テーブルにデータ挿入するときにreq,session.id にアクセスできるようにする
             // ============================================
-            req.session.id = data.id;
+            req.session.user_id = data.id;
             req.session.username = data.name;
             res.sendStatus(200);
             return;
@@ -159,7 +159,7 @@ app.post("/upload", multer().single("file"), (req, res) => {
         // =============================================
         db.one("INSERT INTO works (user_id, url, explanation, title, inspiration) VALUES ($1, $2, $3, $4, $5)", [
           req.session.user_id,
-          req.session.url, 
+          url, 
           explanation_a, 
           title_a, 
           inspiration_a, 
