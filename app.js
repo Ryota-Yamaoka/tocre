@@ -160,10 +160,11 @@ app.post("/upload", multer().single("file"), (req, res) => {
         db.one("INSERT INTO works (user_id, url, explanation, title, inspiration) VALUES ($1, $2, $3, $4, $5)", [
           req.session.user_id,
           url, 
-          explanation_a, 
-          title_a, 
-          inspiration_a, 
+          req.session.user_id, 
+          req.session.user_id, 
+          req.session.user_id, 
         ])
+        console.log(req.session);
         return res.redirect("/success"); // 成功したらsuccessにリダイレクト
       });
     })
@@ -172,6 +173,7 @@ app.post("/upload", multer().single("file"), (req, res) => {
       res.send(err);
     });
 });
+
 app.get("/success", (req, res) => {
   return res.render("success.ejs");
 });
