@@ -164,8 +164,9 @@ app.post("/upload", multer().single("file"), (req, res) => {
           req.session.user_id, 
           req.session.user_id, 
         ])
-        console.log(req.session);
-        return res.redirect("/success"); // 成功したらsuccessにリダイレクト
+        .then((result) => {
+          return res.redirect("/success"); // 成功したらsuccessにリダイレクト
+        })
       });
     })
     .catch((err) => {
