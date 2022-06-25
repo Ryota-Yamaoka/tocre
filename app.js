@@ -90,6 +90,7 @@ app.post("/login", async (req, res) => {
       // ======== write here your code =============
       // req seesion に対応するdata のフィールドを入れる
       // e.g) req.session.username = data.name;
+      req.session.user_id = data.id;
       req.session.username = data.name;
       res.sendStatus(200);
     })
@@ -145,6 +146,7 @@ app.post("/upload", multer().single("file"), (req, res) => {
   const storage = getStorage();
   const storageRef = ref(storage, fileRef);
 
+  console.log(">>>>>>>>>>>>>>>>>>>>>>", req.session); 
   // firebase storage にupload する関数
   uploadBytes(storageRef, fileBuf)
     // then は成功したときに実行される条件文
