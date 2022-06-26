@@ -64,6 +64,16 @@ app.get("/users/:userId", (req, res) => {
     });
 });
 
+app.get("/users/:userId/works", (req, res) => {
+  db.one("SELECT * FROM works WHERE id=$1", [req.params.userId])
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((error) => {
+      console.log("ERROR:", error);
+    });
+});
+
 app.get("/create-select", (req, res) => {
   return res.render("create-select.ejs");
 });
