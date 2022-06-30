@@ -98,7 +98,7 @@ app.post("/login", async (req, res) => {
       // データが無かった場合
       if (isErrNoData(error)) {
         // ======== write here your code =============
-        db.one("INSERT INTO users (firebase_uuid, name) VALUES ($1, $2)", [
+        db.query("INSERT INTO users (firebase_uuid, name) VALUES ($1, $2)", [
           req.body.id,
           username,
         ]) // req.body.id とreq.body.namen など必要なデータを挿入する
@@ -129,9 +129,9 @@ app.post("/login", async (req, res) => {
 app.get("/upload", (req, res) => {
   // ======== write here your code =============
   // ログインしていなかったらloginにとばすコードを書きましょう
-  if (!req.session.isLoggedIn) {
-    return res.redirect("/login");
-  }
+  // if (!req.session.isLoggedIn) {
+  //   return res.redirect("/login");
+  // }
   // ===========================================
   return res.render("upload.ejs");
 });
@@ -145,8 +145,9 @@ app.post("/upload", multer().single("file"), (req, res) => {
   // firebase storage の情報を取得
   const storage = getStorage();
   const storageRef = ref(storage, fileRef);
+  req.session.user_id = 4;
 
-  console.log(">>>>>>>>>>>>>>>>>>>>>>", req.session); 
+  console.log(">>>>>>>>>>>>>>>>>>>>>>", req.session);
   // firebase storage にupload する関数
   uploadBytes(storageRef, fileBuf)
     // then は成功したときに実行される条件文
@@ -159,16 +160,24 @@ app.post("/upload", multer().single("file"), (req, res) => {
         // ユーザーIDはreq.session.id とする
         // ひとまずurl とuserid 以外のexplanationとかはnullにならないように適当に埋めておく
         // =============================================
-        db.one("INSERT INTO works (user_id, url, explanation, title, inspiration) VALUES ($1, $2, $3, $4, $5)", [
-          req.session.user_id,
-          url, 
-          req.session.user_id, 
-          req.session.user_id, 
-          req.session.user_id, 
-        ])
-        .then((result) => {
-          return res.redirect("/success"); // 成功したらsuccessにリダイレクト
-        })
+        db.query(
+          "INSERT INTO works (user_id, url, explanation, title, inspiration) VALUES ($1, $2, $3, $4, $5)",
+          [
+            req.session.user_id,
+            url,
+            req.session.user_id,
+            req.session.user_id,
+            req.session.user_id,
+          ]
+        )
+          .then((data) => {
+            return res.redirect("/success"); // 成功したらsuccessにリダイレクト
+          })
+          .catch((error) => {
+            console.log("ERROR:", error);
+            res.sendStatus(500);
+            return;
+          });
       });
     })
     .catch((err) => {
