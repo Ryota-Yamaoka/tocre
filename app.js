@@ -80,6 +80,7 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
+  // TODO: token 認証
   const firebaseUUiD = req.body.id;
   const username = req.body.name || req.body.email;
 
@@ -98,7 +99,7 @@ app.post("/login", async (req, res) => {
       // データが無かった場合
       if (isErrNoData(error)) {
         // ======== write here your code =============
-        db.one("INSERT INTO users (firebase_uuid, name) VALUES ($1, $2)", [
+        db.query("INSERT INTO users (firebase_uuid, name) VALUES ($1, $2)", [
           req.body.id,
           username,
         ]) // req.body.id とreq.body.namen など必要なデータを挿入する
@@ -132,11 +133,14 @@ app.get("/upload", (req, res) => {
   if (!req.session.isLoggedIn) {
     return res.redirect("/login");
   }
-  // ===========================================
   return res.render("upload.ejs");
 });
 
 app.post("/upload", multer().single("file"), (req, res) => {
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/login");
+  }
+
   const fileBuf = req.file.buffer;
   // .env 内のUPLOAD_BUCKET=XXXに記載したバケットにアップロードする
   // req.file.originalname はアップロードされたファイルのファイル名
@@ -146,7 +150,6 @@ app.post("/upload", multer().single("file"), (req, res) => {
   const storage = getStorage();
   const storageRef = ref(storage, fileRef);
 
-  console.log(">>>>>>>>>>>>>>>>>>>>>>", req.session); 
   // firebase storage にupload する関数
   uploadBytes(storageRef, fileBuf)
     // then は成功したときに実行される条件文
@@ -159,16 +162,24 @@ app.post("/upload", multer().single("file"), (req, res) => {
         // ユーザーIDはreq.session.id とする
         // ひとまずurl とuserid 以外のexplanationとかはnullにならないように適当に埋めておく
         // =============================================
-        db.one("INSERT INTO works (user_id, url, explanation, title, inspiration) VALUES ($1, $2, $3, $4, $5)", [
-          req.session.user_id,
-          url, 
-          req.session.user_id, 
-          req.session.user_id, 
-          req.session.user_id, 
-        ])
-        .then((result) => {
-          return res.redirect("/success"); // 成功したらsuccessにリダイレクト
-        })
+        db.query(
+          "INSERT INTO works (user_id, url, explanation, title, inspiration) VALUES ($1, $2, $3, $4, $5)",
+          [
+            req.session.user_id,
+            url,
+            req.body.explanation,
+            req.body.title,
+            req.body.inspiration,
+          ]
+        )
+          .then((data) => {
+            return res.redirect("/success"); // 成功したらsuccessにリダイレクト
+          })
+          .catch((error) => {
+            console.log("ERROR:", error);
+            res.sendStatus(500);
+            return;
+          });
       });
     })
     .catch((err) => {
