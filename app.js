@@ -80,6 +80,7 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
+  // TODO: token 認証
   const firebaseUUiD = req.body.id;
   const username = req.body.name || req.body.email;
 
@@ -129,14 +130,17 @@ app.post("/login", async (req, res) => {
 app.get("/upload", (req, res) => {
   // ======== write here your code =============
   // ログインしていなかったらloginにとばすコードを書きましょう
-  // if (!req.session.isLoggedIn) {
-  //   return res.redirect("/login");
-  // }
-  // ===========================================
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/login");
+  }
   return res.render("upload.ejs");
 });
 
 app.post("/upload", multer().single("file"), (req, res) => {
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/login");
+  }
+
   const fileBuf = req.file.buffer;
   // .env 内のUPLOAD_BUCKET=XXXに記載したバケットにアップロードする
   // req.file.originalname はアップロードされたファイルのファイル名
@@ -145,9 +149,7 @@ app.post("/upload", multer().single("file"), (req, res) => {
   // firebase storage の情報を取得
   const storage = getStorage();
   const storageRef = ref(storage, fileRef);
-  req.session.user_id = 4;
 
-  console.log(">>>>>>>>>>>>>>>>>>>>>>", req.session);
   // firebase storage にupload する関数
   uploadBytes(storageRef, fileBuf)
     // then は成功したときに実行される条件文
@@ -165,9 +167,9 @@ app.post("/upload", multer().single("file"), (req, res) => {
           [
             req.session.user_id,
             url,
-            req.session.user_id,
-            req.session.user_id,
-            req.session.user_id,
+            req.body.explanation,
+            req.body.title,
+            req.body.inspiration,
           ]
         )
           .then((data) => {
